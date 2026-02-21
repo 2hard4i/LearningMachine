@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsupervised Learning - Machine Learning</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1e293b;
+    color: white;
+}
+
+/* HEADER */
+header {
+    background: #1e293b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 2px solid white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+header h1 {
+    font-size: 1.3rem;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #cbd5f5;
+    text-decoration: underline;
+}
+
+/* CONTENT */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    color: #1e293b;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 22px;
+    color: #1e293b;
+}
+
+p {
+    line-height: 1.8;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+ul {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.card {
+    background: #f8fafc;
+    border-left: 6px solid #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #64748b;
+}
+/* RIGHT SIDE NAVBAR */
+.side-nav {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    width: 230px;
+    background-color: #1e293b;
+    padding: 20px;
+    height: 100%;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+}
+
+.side-nav h2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+}
+
+.side-nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.side-nav a:hover {
+    background-color: white;
+    color: #1e293b;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
+        <h1>T-know</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<h1>Unsupervised Learning in Machine Learning</h1>
+
+<p>
+Unsupervised learning is a type of machine learning where the model is trained on data that does not have labeled outputs. 
+Unlike supervised learning, the system is not told the correct answers. Instead, it automatically discovers patterns, structures, and relationships within the data. 
+The main goal of unsupervised learning is to explore data and find hidden information.
+</p>
+
+<h2>How Unsupervised Learning Works</h2>
+<div class="card">
+<p>
+In unsupervised learning, the algorithm receives only input features without any labels.  
+The model analyzes the data and identifies similarities, differences, or patterns.  
+It can group similar data points together, reduce the number of variables, or detect unusual data points called anomalies.
+</p>
+</div>
+
+<h2>Main Types of Unsupervised Learning</h2>
+<ul>
+<li><b>Clustering</b> – Groups similar data points into clusters.  
+Example: grouping customers based on shopping behavior.</li>
+
+<li><b>Association Rule Learning</b> – Finds relationships between variables in large datasets.  
+Example: people who buy bread often buy butter.</li>
+
+<li><b>Dimensionality Reduction</b> – Reduces the number of features while keeping important information.  
+Example: Principal Component Analysis (PCA).</li>
+</ul>
+
+<h2>Common Algorithms in Unsupervised Learning</h2>
+<ul>
+<li>K-Means Clustering</li>
+<li>Hierarchical Clustering</li>
+<li>DBSCAN (Density-Based Spatial Clustering)</li>
+<li>Apriori Algorithm</li>
+<li>Principal Component Analysis (PCA)</li>
+<li>Autoencoders (Neural Networks)</li>
+</ul>
+
+<h2>Real-World Applications</h2>
+<div class="card">
+<p>🛒 Market basket analysis in supermarkets</p>
+<p>👥 Customer segmentation in marketing</p>
+<p>📷 Image and document organization</p>
+<p>🔍 Anomaly detection in cybersecurity and fraud detection</p>
+<p>🧬 Pattern discovery in scientific research and biology</p>
+</div>
+
+<h2>Advantages of Unsupervised Learning</h2>
+<ul>
+<li>No need for labeled data, which saves time and cost</li>
+<li>Can discover hidden patterns and structures in data</li>
+<li>Useful for exploratory data analysis</li>
+<li>Helps understand complex datasets</li>
+</ul>
+
+<h2>Disadvantages of Unsupervised Learning</h2>
+<ul>
+<li>Hard to evaluate accuracy because there are no labels</li>
+<li>Results may be difficult to interpret</li>
+<li>Less precise than supervised learning for prediction tasks</li>
+<li>Performance depends heavily on data quality and algorithm choice</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>
+Unsupervised learning is an important branch of machine learning used for discovering patterns and understanding data. 
+It is widely used in business, science, and technology for clustering, pattern discovery, and data exploration. 
+Although it is powerful, it is more challenging to evaluate compared to supervised learning.
+</p>
+
+<footer>
+<p>Created by Student | T-Know | Machine Learning Academic Page</p>
+</footer>
+
+</div>
+<div class="side-nav">
+    <h2>Topics</h2>
+    <a href="learm.html">Machine Learning</a>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="renf.html">Reinforcement Learning</a>
+</div>
+</body>
+</html>
