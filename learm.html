@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Learning Focus</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1e293b;
+    color: white;
+    display: flex;
+    justify-content: center; /* centers main content horizontally */
+}
+
+/* HEADER */
+header {
+    background: #1e293b;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 2px solid white;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+header h1 {
+    font-size: 1.3rem;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #cbd5f5;
+    text-decoration: underline;
+}
+
+/* MAIN CONTENT - centered */
+.container {
+    max-width: 900px;
+    background: white;
+    color: #1e293b;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    margin: 120px 20px 40px 20px; /* top margin to avoid header */
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 22px;
+    color: #1e293b;
+}
+
+p {
+    line-height: 1.8;
+    margin-top: 10px;
+    text-align: justify;
+}
+
+ul {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.card {
+    background: #f8fafc;
+    border-left: 6px solid #1e293b;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #64748b;
+}
+
+/* RIGHT SIDE NAVBAR */
+.side-nav {
+    position: fixed;
+    top: 120px; /* below header */
+    right: 0;
+    width: 230px;
+    background-color: #1e293b;
+    padding: 20px;
+    height: calc(100% - 120px);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+}
+
+.side-nav h2 {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
+}
+
+.side-nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.side-nav a:hover {
+    background-color: white;
+    color: #1e293b;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
+        <h1>T-know</h1>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+
+<h1 id="ml-focus">Machine Learning Focus</h1>
+
+<div class="card">
+<h2>What is Machine Learning?</h2>
+<p>
+Machine Learning (ML) is a subset of Artificial Intelligence (AI) that focuses on creating systems capable of learning from data and improving automatically over time. 
+It enables computers to detect patterns, make predictions, and make decisions without explicit programming.
+</p>
+</div>
+
+<div class="card">
+<h2 id="history">History of Machine Learning</h2>
+<p>
+The roots of Machine Learning go back to the 1950s. In 1950, Alan Turing introduced the concept of machines that could learn and proposed the "Turing Test" to evaluate intelligence.
+In 1957, Frank Rosenblatt created the Perceptron, an early neural network capable of recognizing simple patterns.
+Over the decades, advancements in algorithms, computing power, and data availability fueled the growth of ML into a practical technology used worldwide today.
+</p>
+</div>
+
+<div class="card">
+<h2 id="key-figures">Key Figures in Machine Learning</h2>
+<ul>
+<li><b>Alan Turing:</b> Laid the foundational concepts of machine intelligence.</li>
+<li><b>Arthur Samuel:</b> Coined "Machine Learning" in 1959; worked on game-playing algorithms.</li>
+<li><b>Geoffrey Hinton:</b> "Godfather of Deep Learning," key neural network researcher.</li>
+<li><b>Yann LeCun:</b> Developed convolutional neural networks for image recognition.</li>
+<li><b>Andrew Ng:</b> AI educator and advocate for large-scale ML applications.</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Main Focus of Machine Learning</h2>
+<ul>
+<li>Automatically learning patterns from data</li>
+<li>Making accurate predictions or classifications</li>
+<li>Discovering insights in large datasets</li>
+<li>Assisting in decision-making for real-world problems</li>
+<li>Continuously improving performance over time</li>
+</ul>
+</div>
+
+<div class="card">
+<h2 id="applications">Applications of Machine Learning</h2>
+<ul>
+<li>Healthcare – predicting diseases and patient outcomes</li>
+<li>Finance – fraud detection, algorithmic trading</li>
+<li>Retail – recommendation systems, inventory management</li>
+<li>Transportation – self-driving cars, traffic prediction</li>
+<li>Technology – virtual assistants, language translation</li>
+</ul>
+</div>
+
+<footer>
+<p>Created by Student | T-Know | Machine Learning Academic Page</p>
+</footer>
+</div>
+
+<!-- RIGHT SIDE NAVIGATION BAR -->
+<div class="side-nav">
+<h2>Topics</h2>
+<a href="supv.html">Supervised Learning Machine</a>
+<a href="renf.html">Reinforcement Learning Machine</a>
+<a href="unsupv.html">Unsupervised Learning Machine</a>
+</div>
+
+</body>
+</html>
