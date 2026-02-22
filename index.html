@@ -323,17 +323,19 @@ nav {
 <script>
 const faders = document.querySelectorAll('.fade-up');
 
-window.addEventListener('scroll', () => {
+function showOnLoad(){
     const trigger = window.innerHeight * 0.85;
 
     faders.forEach(el => {
         const top = el.getBoundingClientRect().top;
-
         if(top < trigger){
             el.classList.add('show');
         }
     });
-});
+}
+
+window.addEventListener('scroll', showOnLoad);
+window.addEventListener('load', showOnLoad);
 </script>
 
 </body>
