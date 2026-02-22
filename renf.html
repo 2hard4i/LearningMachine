@@ -6,8 +6,7 @@
 <title>Reinforcement Learning - Machine Learning</title>
 
 <style>
-/* ===================== Global Styles ===================== */
-* {
+
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -19,7 +18,6 @@ body {
     color: white;
 }
 
-/* ===================== Header ===================== */
 header {
     background: #1e293b;
     display: flex;
@@ -60,7 +58,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* ===================== Container / Content ===================== */
 .container {
     max-width: 1000px;
     margin: 40px auto;
@@ -107,8 +104,6 @@ footer {
     color: #64748b;
 }
 
-/* ===================== Header-aware Toggle ===================== */
-/* Assuming your header height is ~80px */
 #toggle-btn {
     top: 90px; /* push below header */
     right: 20px;
@@ -165,8 +160,7 @@ footer {
     background-color: white;
     color: #1e293b;
 }
-
-/* ===================== Main Content for Sidebar demo ===================== */
+    
 .main-content {
     padding: 20px;
 }
@@ -189,15 +183,13 @@ footer {
     </nav>
 </header>
 
-<!-- Toggle Button -->
 <button id="toggle-btn">☰ Topics</button>
 
-<!-- Side Navigation -->
 <div class="side-nav" id="side-nav">
     <h2>Topics</h2>
-    <a href="learm.html">Machine Learning</a>
     <a href="supv.html">Supervised Learning</a>
     <a href="unsupv.html">Unsupervised Learning</a>
+    <a href="learm.html">Machine Learning</a>
 </div>
 
 <!-- Main Page Content -->
@@ -274,13 +266,11 @@ footer {
     </footer>
 </div>
 
-<!-- Optional Main Content for Sidebar Demo -->
 <div class="main-content">
     <h1>Welcome to Machine Learning</h1>
     <p>Here is your main content...</p>
 </div>
 
-<!-- ===================== JavaScript ===================== -->
 <script>
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
