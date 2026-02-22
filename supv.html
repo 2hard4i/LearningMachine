@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Supervised Learning - Machine Learning</title>
+<title>Machine Learning Focus</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -104,15 +105,36 @@ footer {
     color: #64748b;
 }
 
-.side-nav {
+#toggle-btn {
+    top: 90px; 
+    right: 20px;
     position: fixed;
-    top: 100px;
-    right: 0;
+    z-index: 1100;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-nav {
+    top: 90px; 
+    right: -250px;
     width: 230px;
+    height: calc(100vh - 90px); 
+    position: fixed;
     background-color: #1e293b;
     padding: 20px;
-    height: 100%;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.side-nav.active {
+    right: 0;
 }
 
 .side-nav h2 {
@@ -138,11 +160,15 @@ footer {
     background-color: white;
     color: #1e293b;
 }
+
+.main-content {
+    padding: 20px;
+}
 </style>
 </head>
 
 <body>
-
+    
 <header>
     <div class="logo">
         <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
@@ -156,86 +182,82 @@ footer {
     </nav>
 </header>
 
+<button id="toggle-btn">☰ Topics</button>
+
+
+<div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="unsupv.html">Unsupervised Learning</a>
+       <a href="learm.html">Machine Learning</a>
+</div>
 <div class="container">
 
-<h1>Supervised Learning in Machine Learning</h1>
+<h1 id="ml-focus">Machine Learning Focus</h1>
 
-<p>
-Supervised learning is a fundamental type of machine learning where an algorithm learns from a labeled dataset. 
-In this method, each training example consists of an input and a corresponding correct output (also called a label). 
-The main goal of supervised learning is to learn a function that maps inputs to outputs so the model can make accurate predictions on new and unseen data.
-</p>
-
-<h2>How Supervised Learning Works</h2>
 <div class="card">
+<h2>What is Machine Learning?</h2>
 <p>
-In supervised learning, the model is trained using a dataset that includes both features (input variables) and labels (target outputs).  
-The algorithm compares its predicted output with the actual label and calculates an error.  
-This error is used to adjust the model using optimization techniques such as gradient descent until the predictions become more accurate.
+Machine Learning (ML) is a subset of Artificial Intelligence (AI) that focuses on creating systems capable of learning from data and improving automatically over time. 
+It enables computers to detect patterns, make predictions, and make decisions without explicit programming.
 </p>
 </div>
 
-<h2>Main Types of Supervised Learning</h2>
-<ul>
-<li><b>Classification</b> – Used when the output is a category or class.  
-Examples include email spam detection, disease diagnosis, and image classification.</li>
-
-<li><b>Regression</b> – Used when the output is a continuous numeric value.  
-Examples include predicting house prices, temperature, or student scores.</li>
-</ul>
-
-<h2>Common Algorithms in Supervised Learning</h2>
-<ul>
-<li>Linear Regression</li>
-<li>Logistic Regression</li>
-<li>Decision Trees</li>
-<li>Random Forest</li>
-<li>Support Vector Machines (SVM)</li>
-<li>Neural Networks</li>
-<li>K-Nearest Neighbors (KNN)</li>
-</ul>
-
-<h2>Real-World Applications</h2>
 <div class="card">
-<p>📧 Spam and phishing email detection</p>
-<p>🏥 Medical diagnosis (predicting diseases)</p>
-<p>💰 Credit scoring and fraud detection</p>
-<p>🖼️ Face recognition and image classification</p>
-<p>📚 Predicting student academic performance</p>
+<h2 id="history">History of Machine Learning</h2>
+<p>
+The roots of Machine Learning go back to the 1950s. In 1950, Alan Turing introduced the concept of machines that could learn and proposed the "Turing Test" to evaluate intelligence.
+In 1957, Frank Rosenblatt created the Perceptron, an early neural network capable of recognizing simple patterns.
+Over the decades, advancements in algorithms, computing power, and data availability fueled the growth of ML into a practical technology used worldwide today.
+</p>
 </div>
 
-<h2>Advantages of Supervised Learning</h2>
+<div class="card">
+<h2 id="key-figures">Key Figures in Machine Learning</h2>
 <ul>
-<li>High prediction accuracy when enough labeled data is available</li>
-<li>Easy to evaluate using metrics like accuracy, precision, recall, and RMSE</li>
-<li>Widely used in industry and research</li>
-<li>Clear and interpretable results for many models</li>
+<li><b>Alan Turing:</b> Laid the foundational concepts of machine intelligence.</li>
+<li><b>Arthur Samuel:</b> Coined "Machine Learning" in 1959; worked on game-playing algorithms.</li>
+<li><b>Geoffrey Hinton:</b> "Godfather of Deep Learning," key neural network researcher.</li>
+<li><b>Yann LeCun:</b> Developed convolutional neural networks for image recognition.</li>
+<li><b>Andrew Ng:</b> AI educator and advocate for large-scale ML applications.</li>
 </ul>
+</div>
 
-<h2>Disadvantages of Supervised Learning</h2>
+<div class="card">
+<h2>Main Focus of Machine Learning</h2>
 <ul>
-<li>Requires a large amount of labeled data</li>
-<li>Data labeling is expensive and time-consuming</li>
-<li>Models can overfit if training data is too small or biased</li>
-<li>Performance depends heavily on data quality</li>
+<li>Automatically learning patterns from data</li>
+<li>Making accurate predictions or classifications</li>
+<li>Discovering insights in large datasets</li>
+<li>Assisting in decision-making for real-world problems</li>
+<li>Continuously improving performance over time</li>
 </ul>
+</div>
 
-<h2>Conclusion</h2>
-<p>
-Supervised learning is one of the most important techniques in machine learning. It is widely used in real-world systems because it can make accurate predictions when trained with high-quality labeled data. However, it requires careful data preparation and evaluation to avoid errors and bias.
-</p>
+<div class="card">
+<h2 id="applications">Applications of Machine Learning</h2>
+<ul>
+<li>Healthcare – predicting diseases and patient outcomes</li>
+<li>Finance – fraud detection, algorithmic trading</li>
+<li>Retail – recommendation systems, inventory management</li>
+<li>Transportation – self-driving cars, traffic prediction</li>
+<li>Technology – virtual assistants, language translation</li>
+</ul>
+</div>
 
 <footer>
 <p>Created by Student | T-Know | Machine Learning Academic Page</p>
 </footer>
-
 </div>
 
-<div class="side-nav">
-    <h2>Topics</h2>
-    <a href="learm.html">Machine Learning</a>
-    <a href="unsupv.html">Unsupervised Learning</a>
-    <a href="renf.html">Reinforcement Learning</a>
-</div>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
+
 </body>
 </html>
