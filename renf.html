@@ -230,12 +230,27 @@ It is widely used in robotics, games, and autonomous systems. However, it requir
 </footer>
 
 </div>
-    
-<div class="side-nav">
+
+<button id="toggle-btn">☰ Topics</button>
+
+<div class="side-nav" id="side-nav">
     <h2>Topics</h2>
     <a href="learm.html">Machine Learning</a>
     <a href="supv.html">Supervised Learning</a>
     <a href="unsupv.html">Unsupervised Learning</a>
 </div>
+
+<div class="main-content">
+    <h1>Welcome to Machine Learning</h1>
+    <p>Here is your main content...</p>
+</div>
+    <script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
 </body>
 </html>
