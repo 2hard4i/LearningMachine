@@ -6,69 +6,7 @@
 <title>Reinforcement Learning - Machine Learning</title>
 
 <style>
-    /* Toggle Button */
-#toggle-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1100;
-    background-color: #1e293b;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Side Navigation - Hidden by default */
-.side-nav {
-    position: fixed;
-    top: 0;
-    right: -250px; /* hidden offscreen */
-    width: 230px;
-    height: 100vh;
-    background-color: #1e293b;
-    padding: 20px;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-    transition: right 0.3s ease;
-    z-index: 1000;
-    overflow-y: auto;
-}
-
-/* When sidebar is active */
-.side-nav.active {
-    right: 0;
-}
-
-.side-nav h2 {
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid white;
-    padding-bottom: 5px;
-}
-
-.side-nav a {
-    display: block;
-    color: white;
-    text-decoration: none;
-    margin: 10px 0;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 6px;
-    transition: 0.3s;
-}
-
-.side-nav a:hover {
-    background-color: white;
-    color: #1e293b;
-}
-
-/* Main content spacing */
-.main-content {
-    padding: 20px;
-}
+/* ===================== Global Styles ===================== */
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -81,6 +19,7 @@ body {
     color: white;
 }
 
+/* ===================== Header ===================== */
 header {
     background: #1e293b;
     display: flex;
@@ -121,6 +60,7 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/* ===================== Container / Content ===================== */
 .container {
     max-width: 1000px;
     margin: 40px auto;
@@ -167,15 +107,39 @@ footer {
     color: #64748b;
 }
 
-.side-nav {
+/* ===================== Header-aware Toggle ===================== */
+/* Assuming your header height is ~80px */
+#toggle-btn {
+    top: 90px; /* push below header */
+    right: 20px;
     position: fixed;
-    top: 100px;
-    right: 0;
+    z-index: 1100;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-nav {
+    top: 90px; /* push sidebar below header */
+    right: -250px; /* hidden offscreen */
     width: 230px;
+    height: calc(100vh - 90px); /* reduce height to fit under header */
+    position: fixed;
     background-color: #1e293b;
     padding: 20px;
-    height: 100%;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Show sidebar when active */
+.side-nav.active {
+    right: 0;
 }
 
 .side-nav h2 {
@@ -201,11 +165,17 @@ footer {
     background-color: white;
     color: #1e293b;
 }
+
+/* ===================== Main Content for Sidebar demo ===================== */
+.main-content {
+    padding: 20px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- Header -->
 <header>
     <div class="logo">
         <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
@@ -219,83 +189,10 @@ footer {
     </nav>
 </header>
 
-<div class="container">
-
-<h1>Reinforcement Learning in Machine Learning</h1>
-
-<p>
-Reinforcement learning (RL) is a type of machine learning where an agent learns how to make decisions by interacting with an environment. 
-Instead of learning from labeled data, the agent learns by trial and error and receives rewards or penalties based on its actions. 
-The main goal is to maximize the total reward over time.
-</p>
-
-<h2>How Reinforcement Learning Works</h2>
-<div class="card">
-<p>
-In reinforcement learning, an agent observes the environment, takes an action, and receives feedback in the form of a reward or punishment.  
-The agent learns a strategy called a policy that tells it which actions to take in different situations.  
-Over time, the agent improves its decisions to achieve the best possible outcome.
-</p>
-</div>
-
-<h2>Key Components of Reinforcement Learning</h2>
-<ul>
-<li><b>Agent</b> – The learner or decision-maker (e.g., a robot or AI program)</li>
-<li><b>Environment</b> – The world where the agent interacts</li>
-<li><b>State</b> – The current situation of the environment</li>
-<li><b>Action</b> – What the agent can do</li>
-<li><b>Reward</b> – Feedback given to the agent for its action</li>
-<li><b>Policy</b> – A strategy that guides the agent’s actions</li>
-</ul>
-
-<h2>Common Reinforcement Learning Algorithms</h2>
-<ul>
-<li>Q-Learning</li>
-<li>Deep Q-Networks (DQN)</li>
-<li>Policy Gradient Methods</li>
-<li>Actor-Critic Algorithms</li>
-<li>Monte Carlo Methods</li>
-</ul>
-
-<h2>Real-World Applications</h2>
-<div class="card">
-<p>🎮 Game AI (e.g., chess, Go, video games)</p>
-<p>🤖 Robotics and automation</p>
-<p>🚗 Self-driving cars and navigation systems</p>
-<p>📈 Stock trading and financial decision-making</p>
-<p>🏭 Industrial control systems</p>
-</div>
-
-<h2>Advantages of Reinforcement Learning</h2>
-<ul>
-<li>Can learn complex tasks through interaction</li>
-<li>Does not need labeled data</li>
-<li>Useful for decision-making problems</li>
-<li>Improves performance through experience</li>
-</ul>
-
-<h2>Disadvantages of Reinforcement Learning</h2>
-<ul>
-<li>Requires a lot of training time and data</li>
-<li>Computationally expensive</li>
-<li>Hard to design reward systems</li>
-<li>Can be unstable or unpredictable during training</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>
-Reinforcement learning is a powerful machine learning approach focused on decision-making and learning from experience. 
-It is widely used in robotics, games, and autonomous systems. However, it requires large computational resources and careful design of reward functions to perform effectively.
-</p>
-
-<footer>
-<p>Created by Student | T-Know | Machine Learning Academic Page</p>
-</footer>
-
-</div>
-
+<!-- Toggle Button -->
 <button id="toggle-btn">☰ Topics</button>
 
+<!-- Side Navigation -->
 <div class="side-nav" id="side-nav">
     <h2>Topics</h2>
     <a href="learm.html">Machine Learning</a>
@@ -303,11 +200,88 @@ It is widely used in robotics, games, and autonomous systems. However, it requir
     <a href="unsupv.html">Unsupervised Learning</a>
 </div>
 
+<!-- Main Page Content -->
+<div class="container">
+    <h1>Reinforcement Learning in Machine Learning</h1>
+
+    <p>
+        Reinforcement learning (RL) is a type of machine learning where an agent learns how to make decisions by interacting with an environment. 
+        Instead of learning from labeled data, the agent learns by trial and error and receives rewards or penalties based on its actions. 
+        The main goal is to maximize the total reward over time.
+    </p>
+
+    <h2>How Reinforcement Learning Works</h2>
+    <div class="card">
+        <p>
+            In reinforcement learning, an agent observes the environment, takes an action, and receives feedback in the form of a reward or punishment.  
+            The agent learns a strategy called a policy that tells it which actions to take in different situations.  
+            Over time, the agent improves its decisions to achieve the best possible outcome.
+        </p>
+    </div>
+
+    <h2>Key Components of Reinforcement Learning</h2>
+    <ul>
+        <li><b>Agent</b> – The learner or decision-maker (e.g., a robot or AI program)</li>
+        <li><b>Environment</b> – The world where the agent interacts</li>
+        <li><b>State</b> – The current situation of the environment</li>
+        <li><b>Action</b> – What the agent can do</li>
+        <li><b>Reward</b> – Feedback given to the agent for its action</li>
+        <li><b>Policy</b> – A strategy that guides the agent’s actions</li>
+    </ul>
+
+    <h2>Common Reinforcement Learning Algorithms</h2>
+    <ul>
+        <li>Q-Learning</li>
+        <li>Deep Q-Networks (DQN)</li>
+        <li>Policy Gradient Methods</li>
+        <li>Actor-Critic Algorithms</li>
+        <li>Monte Carlo Methods</li>
+    </ul>
+
+    <h2>Real-World Applications</h2>
+    <div class="card">
+        <p>🎮 Game AI (e.g., chess, Go, video games)</p>
+        <p>🤖 Robotics and automation</p>
+        <p>🚗 Self-driving cars and navigation systems</p>
+        <p>📈 Stock trading and financial decision-making</p>
+        <p>🏭 Industrial control systems</p>
+    </div>
+
+    <h2>Advantages of Reinforcement Learning</h2>
+    <ul>
+        <li>Can learn complex tasks through interaction</li>
+        <li>Does not need labeled data</li>
+        <li>Useful for decision-making problems</li>
+        <li>Improves performance through experience</li>
+    </ul>
+
+    <h2>Disadvantages of Reinforcement Learning</h2>
+    <ul>
+        <li>Requires a lot of training time and data</li>
+        <li>Computationally expensive</li>
+        <li>Hard to design reward systems</li>
+        <li>Can be unstable or unpredictable during training</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+        Reinforcement learning is a powerful machine learning approach focused on decision-making and learning from experience. 
+        It is widely used in robotics, games, and autonomous systems. However, it requires large computational resources and careful design of reward functions to perform effectively.
+    </p>
+
+    <footer>
+        <p>Created by Student | T-Know | Machine Learning Academic Page</p>
+    </footer>
+</div>
+
+<!-- Optional Main Content for Sidebar Demo -->
 <div class="main-content">
     <h1>Welcome to Machine Learning</h1>
     <p>Here is your main content...</p>
 </div>
-    <script>
+
+<!-- ===================== JavaScript ===================== -->
+<script>
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
 
@@ -315,5 +289,6 @@ toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
 });
 </script>
+
 </body>
 </html>
