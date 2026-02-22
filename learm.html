@@ -6,6 +6,7 @@
 <title>Machine Learning Focus</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -16,21 +17,15 @@
 body {
     background-color: #1e293b;
     color: white;
-    display: flex;
-    justify-content: center; /* centers main content horizontally */
 }
-    
+
 header {
     background: #1e293b;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
     border-bottom: 2px solid white;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
 }
 
 .logo {
@@ -65,15 +60,13 @@ nav a:hover {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 1000px;
+    margin: 40px auto;
     background: white;
     color: #1e293b;
     border-radius: 12px;
     padding: 35px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    margin: 120px 20px 40px 20px; /* top margin to avoid header */
-    position: relative;
-    z-index: 1;
 }
 
 h1 {
@@ -112,16 +105,36 @@ footer {
     color: #64748b;
 }
 
-/* RIGHT SIDE NAVBAR */
-.side-nav {
+#toggle-btn {
+    top: 90px; 
+    right: 20px;
     position: fixed;
-    top: 120px; /* below header */
-    right: 0;
+    z-index: 1100;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-nav {
+    top: 90px; 
+    right: -250px;
     width: 230px;
+    height: calc(100vh - 90px); 
+    position: fixed;
     background-color: #1e293b;
     padding: 20px;
-    height: calc(100% - 120px);
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.side-nav.active {
+    right: 0;
 }
 
 .side-nav h2 {
@@ -147,6 +160,10 @@ footer {
     background-color: white;
     color: #1e293b;
 }
+
+.main-content {
+    padding: 20px;
+}
 </style>
 </head>
 
@@ -165,6 +182,15 @@ footer {
     </nav>
 </header>
 
+<button id="toggle-btn">☰ Topics</button>
+
+
+<div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="unsupv.html">Unsupervised Learning</a>
+       <a href="learm.html">Machine Learning</a>
+</div>
 <div class="container">
 
 <h1 id="ml-focus">Machine Learning Focus</h1>
@@ -224,12 +250,19 @@ Over the decades, advancements in algorithms, computing power, and data availabi
 </footer>
 </div>
 
-<div class="side-nav">
-<h2>Topics</h2>
-<a href="supv.html">Supervised Learning Machine</a>
-<a href="renf.html">Reinforcement Learning Machine</a>
-<a href="unsupv.html">Unsupervised Learning Machine</a>
+<div class="main-content">
+    <h1>Welcome to Machine Learning</h1>
+    <p>Here is your main content...</p>
 </div>
+
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
 
 </body>
 </html>
