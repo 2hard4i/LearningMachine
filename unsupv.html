@@ -104,15 +104,36 @@ footer {
     color: #64748b;
 }
 
-.side-nav {
+#toggle-btn {
+    top: 90px; 
+    right: 20px;
     position: fixed;
-    top: 100px;
-    right: 0;
+    z-index: 1100;
+    background-color: #1e293b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.side-nav {
+    top: 90px; 
+    right: -250px;
     width: 230px;
+    height: calc(100vh - 90px); 
+    position: fixed;
     background-color: #1e293b;
     padding: 20px;
-    height: 100%;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.side-nav.active {
+    right: 0;
 }
 
 .side-nav h2 {
@@ -138,6 +159,10 @@ footer {
     background-color: white;
     color: #1e293b;
 }
+
+.main-content {
+    padding: 20px;
+}
 </style>
 </head>
 
@@ -155,6 +180,12 @@ footer {
         <a href="contact.html">Contact</a>
     </nav>
 </header>
+    <div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="unsupv.html">Reinforcement Learning</a>
+       <a href="learm.html">Machine Learning</a>
+</div>
 
 <div class="container">
 
@@ -234,11 +265,13 @@ Although it is powerful, it is more challenging to evaluate compared to supervis
 </footer>
 
 </div>
-<div class="side-nav">
-    <h2>Topics</h2>
-    <a href="learm.html">Machine Learning</a>
-    <a href="supv.html">Supervised Learning</a>
-    <a href="renf.html">Reinforcement Learning</a>
-</div>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
 </body>
 </html>
