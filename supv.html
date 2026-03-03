@@ -3,43 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Machine Learning Focus</title>
+<title>Supervised Learning | T-Know</title>
 
 <style>
-
+/* Reset & base */
 * {
-    box-sizing: border-box;
-  font-family: "Times New Roman", Times, serif;
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #1e293b;
+    background: #0f172a; /* Dark background */
     color: white;
-      font-family: "Times New Roman", Times, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* Glass Header */
 header {
-    background: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    border-bottom: 2px solid white;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
     gap: 10px;
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
 header h1 {
@@ -51,73 +60,36 @@ nav a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
     transition: 0.3s;
+    backdrop-filter: blur(5px);
 }
 
 nav a:hover {
-    color: #cbd5f5;
-    text-decoration: underline;
+    background: rgba(255,255,255,0.2);
 }
 
-.container {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: white;
-    color: #1e293b;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-top: 22px;
-    color: #1e293b;
-}
-
-p {
-    line-height: 1.8;
-    margin-top: 10px;
-    text-align: justify;
-}
-
-ul {
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.card {
-    background: #f8fafc;
-    border-left: 6px solid #1e293b;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 0.9em;
-    color: #64748b;
-}
-
+/* Side nav for topics */
 #toggle-btn {
     top: 90px; 
     right: 20px;
     position: fixed;
     z-index: 1100;
-    background-color: #1e293b;
+    background-color: rgba(255,255,255,0.1);
     color: white;
     border: none;
     padding: 10px 15px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+#toggle-btn:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 .side-nav {
@@ -126,12 +98,15 @@ footer {
     width: 230px;
     height: calc(100vh - 90px); 
     position: fixed;
-    background-color: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
     padding: 20px;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     transition: right 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
+    border-radius: 20px 0 0 20px;
 }
 
 .side-nav.active {
@@ -142,7 +117,7 @@ footer {
     color: white;
     font-size: 1.2rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 5px;
 }
 
@@ -153,45 +128,120 @@ footer {
     margin: 10px 0;
     font-weight: bold;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
 .side-nav a:hover {
-    background-color: white;
-    color: #1e293b;
+    background: rgba(255,255,255,0.2);
 }
 
-.main-content {
-    padding: 20px;
+/* Main container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    color: white;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+p, ul {
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+/* Image blocks */
+.image-block {
+    width: 100%;
+    height: 100%; /* Set how tall you want the visible area */
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fill container and crop */
+    object-position: bottom; /* crop from top, keep bottom */
+}
+
+
+.img-caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #cbd5f5;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .container { margin: 20px; padding: 25px; }
+    #toggle-btn { top: 80px; right: 15px; }
+    .side-nav { width: 200px; }
 }
 </style>
 </head>
-
 <body>
-    
+
+<!-- Header -->
 <header>
     <div class="logo">
         <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
-        <h1>T-know</h1>
+        <h1>T-Know</h1>
     </div>
-
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
 </header>
+
+<!-- Side Topics -->
 <button id="toggle-btn">☰ Topics</button>
-
-
 <div class="side-nav" id="side-nav">
     <h2>Topics</h2>
     <a href="unsupv.html">Unsupervised Learning</a>
-        <a href="renf.html">Reinforcement Learning</a>
-       <a href="learm.html">Machine Learning</a>
+    <a href="renf.html">Reinforcement Learning</a>
+    <a href="learn.html">Machine Learning</a>
 </div>
 
+<!-- Main Content -->
 <div class="container">
 
 <h1>Supervised Learning in Machine Learning</h1>
@@ -202,6 +252,11 @@ In this method, each training example consists of an input and a corresponding c
 The main goal of supervised learning is to learn a function that maps inputs to outputs so the model can make accurate predictions on new and unseen data.
 </p>
 
+<div class="image-block">
+    <img src="https://techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/07/Supervised-Learning-Model-TV.jpg" alt="Supervised Learning Diagram">
+    <p class="img-caption">Diagram illustrating supervised learning flow</p>
+</div>
+
 <h2>How Supervised Learning Works</h2>
 <div class="card">
 <p>
@@ -211,16 +266,23 @@ This error is used to adjust the model using optimization techniques such as gra
 </p>
 </div>
 
+<div class="image-block">
+    <img src="https://sendbird.imgix.net/cms/Figure-2.-Supervised-learning-diagram.png" alt="Training Example">
+    <p class="img-caption">Training example with input features and labels</p>
+</div>
+
 <h2>Main Types of Supervised Learning</h2>
 <ul>
-<li><b>Classification</b> – Used when the output is a category or class.  
-Examples include email spam detection, disease diagnosis, and image classification.</li>
-
-<li><b>Regression</b> – Used when the output is a continuous numeric value.  
-Examples include predicting house prices, temperature, or student scores.</li>
+<li><b>Classification</b> – Output is a category. Examples: email spam detection, image classification.</li>
+<li><b>Regression</b> – Output is numeric. Examples: predicting house prices, student scores.</li>
 </ul>
 
-<h2>Common Algorithms in Supervised Learning</h2>
+<div class="image-block">
+    <img src="https://www.appliedaicourse.com/blog/wp-content/uploads/2024/10/classification-and-regression.webp" alt="Classification vs Regression">
+    <p class="img-caption">Comparison between Classification and Regression tasks</p>
+</div>
+
+<h2>Common Algorithms</h2>
 <ul>
 <li>Linear Regression</li>
 <li>Logistic Regression</li>
@@ -231,38 +293,48 @@ Examples include predicting house prices, temperature, or student scores.</li>
 <li>K-Nearest Neighbors (KNN)</li>
 </ul>
 
+<div class="image-block">
+    <img src="https://researchmate.net/wp-content/uploads/2024/12/Logistic-Regression.png" alt="Algorithm Flow">
+    <p class="img-caption">Algorithm workflow in supervised learning</p>
+</div>
+
 <h2>Real-World Applications</h2>
 <div class="card">
 <p>📧 Spam and phishing email detection</p>
-<p>🏥 Medical diagnosis (predicting diseases)</p>
+<p>🏥 Medical diagnosis</p>
 <p>💰 Credit scoring and fraud detection</p>
 <p>🖼️ Face recognition and image classification</p>
 <p>📚 Predicting student academic performance</p>
 </div>
 
-<h2>Advantages of Supervised Learning</h2>
+<div class="image-block">
+    <img src="https://wallpapers.com/images/file/accounting-pictures-w5389z3wgi46dzsl.jpg" alt="Applications">
+    <p class="img-caption">Real-world use cases of supervised learning</p>
+</div>
+
+<h2>Advantages</h2>
 <ul>
-<li>High prediction accuracy when enough labeled data is available</li>
-<li>Easy to evaluate using metrics like accuracy, precision, recall, and RMSE</li>
-<li>Widely used in industry and research</li>
-<li>Clear and interpretable results for many models</li>
+<li>High prediction accuracy with enough labeled data</li>
+<li>Easy evaluation using metrics like accuracy, precision, recall</li>
+<li>Clear and interpretable results</li>
 </ul>
 
-<h2>Disadvantages of Supervised Learning</h2>
+<h2>Disadvantages</h2>
 <ul>
-<li>Requires a large amount of labeled data</li>
-<li>Data labeling is expensive and time-consuming</li>
-<li>Models can overfit if training data is too small or biased</li>
-<li>Performance depends heavily on data quality</li>
+<li>Requires lots of labeled data</li>
+<li>Labeling is expensive</li>
+<li>Models can overfit if data is biased</li>
 </ul>
 
 <h2>Conclusion</h2>
 <p>
 Supervised learning is one of the most important techniques in machine learning. It is widely used in real-world systems because it can make accurate predictions when trained with high-quality labeled data. However, it requires careful data preparation and evaluation to avoid errors and bias.
 </p>
+
 <footer>
 <p>Created by Student | T-Know | Machine Learning Academic Page</p>
 </footer>
+
 </div>
 
 <script>
