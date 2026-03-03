@@ -1,451 +1,227 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>T-Know | Home</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-Know | Glass Slider</title>
+
+<!-- Your Star Background CSS -->
+<link rel="stylesheet" href="style.css">
 
 <style>
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-      font-family: "Times New Roman", Times, serif;
-}
-    
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-      font-family: "Times New Roman", Times, serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
 }
 
+html, body {
+  height:100%;
+  overflow-x:hidden;
+}
+
+/* HEADER */
 header {
-    background: #1e293b;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 30px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-radius:0 0 20px 20px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display:flex;
+  align-items:center;
 }
 
 .logo img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    margin-right: 10px;
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  margin-right:10px;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-    font-size: 14px;
+nav button {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color:white;
+  padding:10px 18px;
+  margin-left:12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
 }
 
-nav a:hover {
-    color: #cbd5f5;
-    text-decoration: underline;
+nav button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
 }
-    
+
+/* HERO */
 .hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 80px 60px;
-    background: linear-gradient(to right, white, #e0e7ff);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
 }
 
-.hero-text {
-    max-width: 50%;
-    animation: slideLeft 1s ease forwards;
+/* SLIDER */
+.slider-wrapper {
+  position:relative;
+  width:360px;
+  height:360px;
+  overflow:hidden;
 }
 
-.hero-image {
-    animation: slideRight 1s ease forwards;
-}
-
-.hero-text h2 {
-    font-size: 32px;
-    color: #1e293b;
-    margin-bottom: 15px;
-}
-
-.hero-text p {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 25px;
-}
-
-.hero-text button {
-    padding: 10px 20px;
-    border: none;
-    background: #1e293b;
-    color: white;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.hero-text button:hover {
-    background: #2563eb;
-    transform: scale(1.08);
-}
-
-.hero-image img {
-    width: 280px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.features {
-    padding: 50px;
-    text-align: center;
-    background: white;
-}
-
-.feature-boxes {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.box {
-    width: 160px;
-    height: 160px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    background: #f3f4f6;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.4s;
-}
-
-.box img {
-    width: 100%;
-    height: 110%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-/* Zoom out image + lift */
-.box:hover img {
-    transform: scale(0.85);
-}
-
-.box:hover {
-    transform: translateY(-8px) scale(1.05);
-}
-
-/* Overlay */
-.second {
-    position: absolute;
-    inset: 0;
-    background: rgba(30,41,59,0.9);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    transition: 0.3s;
-    padding: 10px;
-    font-size: 11px;
-}
-
-.box:hover .second {
-    opacity: 1;
-}
-
-.second button {
-    margin-top: 10px;
-    padding: 5px 12px;
-    border: none;
-    background: #38bdf8;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.second button:hover {
-    transform: scale(1.1);
-}
-
-/* ===== SCROLL FADE ===== */
-.fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s ease;
-}
-
-.fade-up.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ===== HERO ANIMATION ===== */
-@keyframes slideLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideRight {
-    from {
-        opacity: 0;
-        transform: translateX(60px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-footer {
-    text-align: center;
-    padding: 15px;
-    background: #1e293b;
-    color: white;
-    font-size: 13px;
-}
-
-@media (max-width: 768px) {
-
-header {
-    flex-direction: column;
-    text-align: center;
-}
-
-nav {
-    margin-top: 8px;
-}
-
-.hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 15px;
-}
-
-.hero-text {
-    max-width: 100%;
-}
-
-.hero-image img {
-    width: 230px;
-    margin-top: 20px;
-}
-
-.feature-boxes {
-    flex-direction: column;
-    align-items: center;
-}
-
-.box {
-    width: 85%;
-    max-width: 220px;
-    height: 160px;
-}
-
-}
-    .hero-slider {
-    position: relative;
-    width: 280px;
-    height: 280px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.hero-slider {
+  width:100%;
+  height:100%;
+  border-radius:20px;
+  overflow:hidden;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
 .slides {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease;
+  display:flex;
+  width:100%;
+  height:105%;
+  transition: transform 0.8s ease-in-out;
 }
 
 .slide {
-    min-width: 100%;
-    padding: 20px;
-    text-align: center;
-    background: #1e293b;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  min-width:100%;
+  height:100%;
 }
 
-.slide h3 {
-    margin-bottom: 10px;
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.slide button {
-    margin-top: 15px;
-    padding: 8px 15px;
-    border: none;
-    background: #38bdf8;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
+/* Buttons */
 .slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.6);
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 50%;
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background: rgba(9, 1, 1, 0.575);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color:rgb(0, 0, 0);
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:22px;
+  z-index:5;
+  transition:0.3s;
 }
 
-.prev {
-    left: 10px;
+.slide-btn:hover {
+  background: rgba(53, 6, 224, 0.382);
+  transform:translateY(-50%) scale(1.1);
 }
 
-.next {
-    right: 10px;
+.prev { left:10px; }
+.next { right:10px; }
+
+footer {
+  text-align:center;
+  padding:15px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  color:white;
+  font-size:13px;
+  margin-top:40px;
+}
+
+@media(max-width:768px){
+  .slider-wrapper { width:90%; height:300px; }
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">
-<img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg">
-<h1>T-Know</h1>
-</div>
+<!-- ⭐ STAR BACKGROUND (FROM YOUR style.css) -->
+<section class="wrapper">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+          <div id="title">
+            <span>PURE CSS</span>
+            <br>
+            <br>
+            <br>
+    
+            <span>Learning Machine</span>
+        </div>
+    </section>
+</section>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-</nav>
+<header>
+  <div class="logo">
+    <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg">
+    <h1>T-Know</h1>
+  </div>
+  <nav>
+    <button onclick="location.href='index.html'">Home</button>
+    <button onclick="location.href='about.html'">About</button>
+    <button onclick="location.href='contact.html'">Contact</button>
+  </nav>
 </header>
 
 <section class="hero">
-<div class="hero-text">
-<h2>Learning Machine</h2>
-<p>Machine learning is a branch of AI where computers learn patterns from data.</p>
-<button onclick="location.href='learm.html'">Learn More</button>
-</div>
-
-<div class="hero-slider">
-
+  <div class="slider-wrapper">
     <button class="slide-btn prev" onclick="moveSlide(-1)">❮</button>
-
-    <div class="slides">
-        <div class="slide active">
-            <h3>Supervised Learning</h3>
-            <p>Learns from labeled data.</p>
-            <button onclick="location.href='supv.html'">Learn</button>
-        </div>
-
-        <div class="slide">
-            <h3>Unsupervised Learning</h3>
-            <p>Finds patterns in unlabeled data.</p>
-            <button onclick="location.href='unsupv.html'">Learn</button>
-        </div>
-
-        <div class="slide">
-            <h3>Reinforcement Learning</h3>
-            <p>Learns by rewards and penalties.</p>
-            <button onclick="location.href='renf.html'">Learn</button>
-        </div>
+    <div class="hero-slider">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="https://th.bing.com/th/id/OIP.VeYtPnWjQH7YL9qp7AcXxgHaHa"></div>
+        <div class="slide"><img src="https://tse3.mm.bing.net/th/id/OIP.OiT5eb0Or11trRVqXwNxXgAAAA"></div>
+        <div class="slide"><img src="https://tse4.mm.bing.net/th/id/OIP.DCgsIxbgoKOdw9Tlq2qEQwHaHa"></div>
+      </div>
     </div>
-
     <button class="slide-btn next" onclick="moveSlide(1)">❯</button>
-
-</div>
-</section>
-
-<section class="features">
-<div class="feature-boxes">
-
-<div class="box fade-up">
-<img src="https://th.bing.com/th/id/OIP.VeYtPnWjQH7YL9qp7AcXxgHaHa">
-<div class="second">
-<p><b>Supervised Learning</b><br>Learns from labeled data.</p>
-<button onclick="location.href='supv.html'">More</button>
-</div>
-</div>
-
-<div class="box fade-up">
-<img src="https://tse4.mm.bing.net/th/id/OIP.DCgsIxbgoKOdw9Tlq2qEQwHaHa">
-<div class="second">
-<p><b>Reinforcement Learning</b><br>Learns by rewards and penalties.</p>
-<button onclick="location.href='renf.html'">More</button>
-</div>
-</div>
-
-<div class="box fade-up">
-<img src="https://tse3.mm.bing.net/th/id/OIP.OiT5eb0Or11trRVqXwNxXgAAAA">
-<div class="second">
-<p><b>Unsupervised Learning</b><br>Finds patterns in unlabeled data.</p>
-<button onclick="location.href='unsupv.html'">More</button>
-</div>
-</div>
-
-</div>
+  </div>
+              <br>
 </section>
 
 <footer>
-<p>Created by Student | T-Know | Machine Learning Academic Page</p>
+  <p>Created by Student | T-Know | Machine Learning Academic Page</p>
 </footer>
 
 <script>
-const faders = document.querySelectorAll('.fade-up');
-
-function showOnLoad(){
-    const trigger = window.innerHeight * 0.85;
-
-    faders.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if(top < trigger){
-            el.classList.add('show');
-        }
-    });
-}
-
-window.addEventListener('scroll', showOnLoad);
-window.addEventListener('load', showOnLoad);
-
-    let currentIndex = 0;
-const slides = document.querySelector('.slides');
-const totalSlides = document.querySelectorAll('.slide').length;
+let index = 0;
+const slides = document.getElementById("slides");
+const total = slides.children.length;
 
 function moveSlide(direction) {
-    currentIndex += direction;
+  // Increase or decrease index
+  index += direction;
 
-    if (currentIndex < 0) {
-        currentIndex = totalSlides - 1;
-    }
+  // Loop around
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
 
-    if (currentIndex >= totalSlides) {
-        currentIndex = 0;
-    }
-
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  // Move the slides
+  slides.style.transform = `translateX(-${index * 100}%)`;
 }
 </script>
-
 </body>
 </html>
