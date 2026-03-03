@@ -3,42 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unsupervised Learning - Machine Learning</title>
+<title>Unsupervised Learning | T-Know</title>
 
 <style>
+/* Reset & base */
 * {
-    box-sizing: border-box;
-  font-family: "Times New Roman", Times, serif;
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #1e293b;
+    background: #0f172a; /* Dark background */
     color: white;
-      font-family: "Times New Roman", Times, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* Glass Header */
 header {
-    background: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    border-bottom: 2px solid white;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
     gap: 10px;
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
 header h1 {
@@ -50,73 +60,36 @@ nav a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
     transition: 0.3s;
+    backdrop-filter: blur(5px);
 }
 
 nav a:hover {
-    color: #cbd5f5;
-    text-decoration: underline;
+    background: rgba(255,255,255,0.2);
 }
 
-.container {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: white;
-    color: #1e293b;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-top: 22px;
-    color: #1e293b;
-}
-
-p {
-    line-height: 1.8;
-    margin-top: 10px;
-    text-align: justify;
-}
-
-ul {
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.card {
-    background: #f8fafc;
-    border-left: 6px solid #1e293b;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 0.9em;
-    color: #64748b;
-}
-
+/* Side nav for topics */
 #toggle-btn {
     top: 90px; 
     right: 20px;
     position: fixed;
     z-index: 1100;
-    background-color: #1e293b;
+    background-color: rgba(255,255,255,0.1);
     color: white;
     border: none;
     padding: 10px 15px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+#toggle-btn:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 .side-nav {
@@ -125,12 +98,15 @@ footer {
     width: 230px;
     height: calc(100vh - 90px); 
     position: fixed;
-    background-color: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
     padding: 20px;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     transition: right 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
+    border-radius: 20px 0 0 20px;
 }
 
 .side-nav.active {
@@ -141,7 +117,7 @@ footer {
     color: white;
     font-size: 1.2rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 5px;
 }
 
@@ -152,114 +128,205 @@ footer {
     margin: 10px 0;
     font-weight: bold;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
 .side-nav a:hover {
-    background-color: white;
-    color: #1e293b;
+    background: rgba(255,255,255,0.2);
 }
 
-.main-content {
-    padding: 20px;
+/* Main container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    color: white;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+p, ul {
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+/* Image blocks */
+.image-block {
+    width: 100%;
+    height: 100%; /* Set how tall you want the visible area */
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       
+    object-position: bottom; 
+}
+
+
+.img-caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #cbd5f5;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .container { margin: 20px; padding: 25px; }
+    #toggle-btn { top: 80px; right: 15px; }
+    .side-nav { width: 200px; }
 }
 </style>
 </head>
-
 <body>
 
+<!-- Header -->
 <header>
     <div class="logo">
         <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
-        <h1>T-know</h1>
+        <h1>T-Know</h1>
     </div>
-
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
     </nav>
 </header>
-    <button id="toggle-btn">☰ Topics</button>
-    <div class="side-nav" id="side-nav">
+
+<!-- Side Topics -->
+<button id="toggle-btn">☰ Topics</button>
+<div class="side-nav" id="side-nav">
     <h2>Topics</h2>
-    <a href="supv.html">Supervised Learning</a>
+    <a href="unsupv.html">Unsupervised Learning</a>
     <a href="renf.html">Reinforcement Learning</a>
-       <a href="learm.html">Machine Learning</a>
+    <a href="learn.html">Machine Learning</a>
 </div>
 
+<!-- Main Content -->
 <div class="container">
 
 <h1>Unsupervised Learning in Machine Learning</h1>
 
 <p>
-Unsupervised learning is a type of machine learning where the model is trained on data that does not have labeled outputs. 
-Unlike supervised learning, the system is not told the correct answers. Instead, it automatically discovers patterns, structures, and relationships within the data. 
-The main goal of unsupervised learning is to explore data and find hidden information.
+Unsupervised learning is a type of machine learning where the algorithm learns patterns from unlabeled data. 
+Unlike supervised learning, no predefined labels are provided. The main goal is to find hidden structures, groupings, or relationships within the data.
 </p>
+
+<div class="image-block">
+    <img src="https://www.researchgate.net/publication/360955297/figure/fig2/AS:1161624777965569@1653964337776/Unsupervised-learning-workflow.png" alt="Unsupervised Learning Diagram">
+    <p class="img-caption">Diagram illustrating unsupervised learning process</p>
+</div>
 
 <h2>How Unsupervised Learning Works</h2>
 <div class="card">
 <p>
-In unsupervised learning, the algorithm receives only input features without any labels.  
-The model analyzes the data and identifies similarities, differences, or patterns.  
-It can group similar data points together, reduce the number of variables, or detect unusual data points called anomalies.
+In unsupervised learning, the model analyzes data without labeled outcomes.  
+It identifies patterns such as clusters, correlations, or principal components.  
+Algorithms group similar data points together or reduce data dimensionality to simplify analysis.
 </p>
+</div>
+
+<div class="image-block">
+    <img src="https://www.appliedaicourse.com/blog/wp-content/uploads/2024/11/Unsupervised-Learning-in-Machine-Learning-scaled.jpg" alt="Data Clustering">
+    <p class="img-caption">Example of clustering in unsupervised learning</p>
 </div>
 
 <h2>Main Types of Unsupervised Learning</h2>
 <ul>
-<li><b>Clustering</b> – Groups similar data points into clusters.  
-Example: grouping customers based on shopping behavior.</li>
-
-<li><b>Association Rule Learning</b> – Finds relationships between variables in large datasets.  
-Example: people who buy bread often buy butter.</li>
-
-<li><b>Dimensionality Reduction</b> – Reduces the number of features while keeping important information.  
-Example: Principal Component Analysis (PCA).</li>
+<li><b>Clustering</b> – Groups data points into clusters based on similarity. Example: customer segmentation.</li>
+<li><b>Dimensionality Reduction</b> – Reduces the number of features while keeping important information. Example: PCA (Principal Component Analysis).</li>
 </ul>
 
-<h2>Common Algorithms in Unsupervised Learning</h2>
+<div class="image-block">
+    <img src="https://media.licdn.com/dms/image/v2/D5612AQF_UBx_f3DGcQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1725462778562?e=2147483647&v=beta&t=0O0x9W0wNtFTYWNhJjiSxQOoc9t6cPqzOrl_9NWboiw" alt="Clustering vs Dimensionality Reduction">
+    <p class="img-caption">Comparison of clustering and dimensionality reduction</p>
+</div>
+
+<h2>Common Algorithms</h2>
 <ul>
 <li>K-Means Clustering</li>
 <li>Hierarchical Clustering</li>
-<li>DBSCAN (Density-Based Spatial Clustering)</li>
-<li>Apriori Algorithm</li>
+<li>DBSCAN</li>
 <li>Principal Component Analysis (PCA)</li>
-<li>Autoencoders (Neural Networks)</li>
+<li>Independent Component Analysis (ICA)</li>
+<li>Autoencoders</li>
 </ul>
+
+<div class="image-block">
+    <img src="https://assets-global.website-files.com/621e95f9ac30687a56e4297e/64adcad2303c69b316ae5583_V2_1681216576875_5ab1a631-557f-44ae-9ed7-8ab24b15594b_HIGH_RES.png" alt="Algorithm Workflow">
+    <p class="img-caption">Workflow of unsupervised learning algorithms</p>
+</div>
 
 <h2>Real-World Applications</h2>
 <div class="card">
-<p>🛒 Market basket analysis in supermarkets</p>
-<p>👥 Customer segmentation in marketing</p>
-<p>📷 Image and document organization</p>
-<p>🔍 Anomaly detection in cybersecurity and fraud detection</p>
-<p>🧬 Pattern discovery in scientific research and biology</p>
+<p>🛍️ Customer segmentation in marketing</p>
+<p>🔍 Anomaly detection in finance or network security</p>
+<p>📊 Data visualization and dimensionality reduction</p>
+<p>🎵 Recommendation systems</p>
+<p>🧬 Gene expression and bioinformatics</p>
 </div>
 
-<h2>Advantages of Unsupervised Learning</h2>
+<div class="image-block">
+    <img src="https://img.freepik.com/premium-photo/scientist-examining-doublestrand-dna-lab-scientist-interacting-with-holographic-data-human-genetics-ai-generated_585735-12654.jpg" alt="Applications">
+    <p class="img-caption">Real-world use cases of unsupervised learning</p>
+</div>
+
+<h2>Advantages</h2>
 <ul>
-<li>No need for labeled data, which saves time and cost</li>
-<li>Can discover hidden patterns and structures in data</li>
+<li>Can discover hidden patterns in unlabeled data</li>
 <li>Useful for exploratory data analysis</li>
-<li>Helps understand complex datasets</li>
+<li>Reduces dimensionality and simplifies datasets</li>
 </ul>
 
-<h2>Disadvantages of Unsupervised Learning</h2>
+<h2>Disadvantages</h2>
 <ul>
-<li>Hard to evaluate accuracy because there are no labels</li>
+<li>Hard to evaluate accuracy without labels</li>
 <li>Results may be difficult to interpret</li>
-<li>Less precise than supervised learning for prediction tasks</li>
-<li>Performance depends heavily on data quality and algorithm choice</li>
+<li>Algorithm performance depends on input features</li>
 </ul>
 
 <h2>Conclusion</h2>
 <p>
-Unsupervised learning is an important branch of machine learning used for discovering patterns and understanding data. 
-It is widely used in business, science, and technology for clustering, pattern discovery, and data exploration. 
-Although it is powerful, it is more challenging to evaluate compared to supervised learning.
+Unsupervised learning is essential for discovering insights in unlabeled data. It is widely used in clustering, anomaly detection, and data reduction. While it provides flexibility and pattern discovery, careful algorithm selection and parameter tuning are crucial for meaningful results.
 </p>
 
 <footer>
@@ -267,6 +334,7 @@ Although it is powerful, it is more challenging to evaluate compared to supervis
 </footer>
 
 </div>
+
 <script>
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
@@ -275,5 +343,6 @@ toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
 });
 </script>
+
 </body>
 </html>
