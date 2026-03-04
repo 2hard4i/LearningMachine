@@ -3,42 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reinforcement Learning - Machine Learning</title>
+<title>Supervised Learning | T-Know</title>
 
 <style>
+/* Reset & base */
 * {
-    box-sizing: border-box;
-      font-family: "Times New Roman", Times, serif;
-    margin: 0;
-    padding: 0;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-    background-color: #1e293b;
+    background: #0f172a; /* Dark background */
     color: white;
-   font-family: "Times New Roman", Times, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* Glass Header */
 header {
-    background: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    border-bottom: 2px solid white;
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-radius: 0 0 20px 20px;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
     gap: 10px;
 }
 
 .logo img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
 }
 
 header h1 {
@@ -50,73 +60,36 @@ nav a {
     color: white;
     text-decoration: none;
     margin-left: 20px;
-    font-weight: bold;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 12px;
     transition: 0.3s;
+    backdrop-filter: blur(5px);
 }
 
 nav a:hover {
-    color: #cbd5f5;
-    text-decoration: underline;
+    background: rgba(255,255,255,0.2);
 }
 
-.container {
-    max-width: 1000px;
-    margin: 40px auto;
-    background: white;
-    color: #1e293b;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-h2 {
-    margin-top: 22px;
-    color: #1e293b;
-}
-
-p {
-    line-height: 1.8;
-    margin-top: 10px;
-    text-align: justify;
-}
-
-ul {
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.card {
-    background: #f8fafc;
-    border-left: 6px solid #1e293b;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 15px;
-}
-
-footer {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 0.9em;
-    color: #64748b;
-}
-
+/* Side nav for topics */
 #toggle-btn {
     top: 90px; 
     right: 20px;
     position: fixed;
     z-index: 1100;
-    background-color: #1e293b;
+    background-color: rgba(255,255,255,0.1);
     color: white;
     border: none;
     padding: 10px 15px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+#toggle-btn:hover {
+    background-color: rgba(255,255,255,0.2);
 }
 
 .side-nav {
@@ -125,12 +98,15 @@ footer {
     width: 230px;
     height: calc(100vh - 90px); 
     position: fixed;
-    background-color: #1e293b;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
     padding: 20px;
     box-shadow: -5px 0 15px rgba(0,0,0,0.3);
     transition: right 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
+    border-radius: 20px 0 0 20px;
 }
 
 .side-nav.active {
@@ -141,7 +117,7 @@ footer {
     color: white;
     font-size: 1.2rem;
     margin-bottom: 15px;
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 5px;
 }
 
@@ -152,29 +128,103 @@ footer {
     margin: 10px 0;
     font-weight: bold;
     padding: 8px;
-    border-radius: 6px;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
 .side-nav a:hover {
-    background-color: white;
-    color: #1e293b;
+    background: rgba(255,255,255,0.2);
 }
 
-.main-content {
-    padding: 20px;
+/* Main container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    color: white;
+}
+
+/* Headings */
+h1, h2 {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+p, ul {
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+ul {
+    margin-left: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid #3b82f6;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+}
+
+/* Image blocks */
+.image-block {
+    width: 100%;
+    height: 100%; /* Set how tall you want the visible area */
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.image-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* fill container and crop */
+    object-position: bottom; /* crop from top, keep bottom */
+}
+
+
+.img-caption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #cbd5f5;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .container { margin: 20px; padding: 25px; }
+    #toggle-btn { top: 80px; right: 15px; }
+    .side-nav { width: 200px; }
 }
 </style>
 </head>
-
 <body>
 
+<!-- Header -->
 <header>
     <div class="logo">
         <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg" alt="Logo">
-        <h1>T-know</h1>
+        <h1>T-Know</h1>
     </div>
-
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
@@ -182,86 +232,117 @@ footer {
     </nav>
 </header>
 
+<!-- Side Topics -->
 <button id="toggle-btn">☰ Topics</button>
-
 <div class="side-nav" id="side-nav">
     <h2>Topics</h2>
-    <a href="supv.html">Supervised Learning</a>
     <a href="unsupv.html">Unsupervised Learning</a>
-    <a href="learm.html">Machine Learning</a>
+    <a href="renf.html">Reinforcement Learning</a>
+    <a href="learn.html">Machine Learning</a>
 </div>
 
+<!-- Main Content -->
+
 <div class="container">
-    <h1>Reinforcement Learning in Machine Learning</h1>
 
-    <p>
-        Reinforcement learning (RL) is a type of machine learning where an agent learns how to make decisions by interacting with an environment. 
-        Instead of learning from labeled data, the agent learns by trial and error and receives rewards or penalties based on its actions. 
-        The main goal is to maximize the total reward over time.
-    </p>
+<h1>Reinforcement Learning in Machine Learning</h1>
 
-    <h2>How Reinforcement Learning Works</h2>
-    <div class="card">
-        <p>
-            In reinforcement learning, an agent observes the environment, takes an action, and receives feedback in the form of a reward or punishment.  
-            The agent learns a strategy called a policy that tells it which actions to take in different situations.  
-            Over time, the agent improves its decisions to achieve the best possible outcome.
-        </p>
-    </div>
+<p>
+Reinforcement learning is a type of machine learning where an agent learns by interacting with an environment. 
+Instead of learning from labeled data like supervised learning, the agent learns by receiving rewards or penalties 
+based on its actions. The main goal is to maximize the total cumulative reward over time.
+</p>
 
-    <h2>Key Components of Reinforcement Learning</h2>
-    <ul>
-        <li><b>Agent</b> – The learner or decision-maker (e.g., a robot or AI program)</li>
-        <li><b>Environment</b> – The world where the agent interacts</li>
-        <li><b>State</b> – The current situation of the environment</li>
-        <li><b>Action</b> – What the agent can do</li>
-        <li><b>Reward</b> – Feedback given to the agent for its action</li>
-        <li><b>Policy</b> – A strategy that guides the agent’s actions</li>
-    </ul>
+<div class="image-block">
+    <img src="https://www.researchgate.net/profile/Sebastian-Troia/publication/346647694/figure/fig1/AS:965330407026688@1607164112152/Basic-reinforcement-learning-system-with-an-agent-a-reward-function-and-the-environment.png" alt="Reinforcement Learning Diagram">
+    <p class="img-caption">Basic Reinforcement Learning process (Agent–Environment interaction)</p>
+</div>
 
-    <h2>Common Reinforcement Learning Algorithms</h2>
-    <ul>
-        <li>Q-Learning</li>
-        <li>Deep Q-Networks (DQN)</li>
-        <li>Policy Gradient Methods</li>
-        <li>Actor-Critic Algorithms</li>
-        <li>Monte Carlo Methods</li>
-    </ul>
+<h2>How Reinforcement Learning Works</h2>
+<div class="card">
+<p>
+In reinforcement learning, an agent observes the current state of the environment and takes an action. 
+The environment then responds with a new state and a reward. The agent uses this feedback to improve 
+its strategy (called a policy) over time. The learning process focuses on balancing exploration 
+(trying new actions) and exploitation (using known successful actions).
+</p>
+</div>
 
-    <h2>Real-World Applications</h2>
-    <div class="card">
-        <p>🎮 Game AI (e.g., chess, Go, video games)</p>
-        <p>🤖 Robotics and automation</p>
-        <p>🚗 Self-driving cars and navigation systems</p>
-        <p>📈 Stock trading and financial decision-making</p>
-        <p>🏭 Industrial control systems</p>
-    </div>
+<div class="image-block">
+    <img src="https://miro.medium.com/v2/resize:fit:1400/0*AMgCGArY675Kt1qG" alt="Agent and Environment">
+    <p class="img-caption">Agent receiving reward feedback from the environment</p>
+</div>
 
-    <h2>Advantages of Reinforcement Learning</h2>
-    <ul>
-        <li>Can learn complex tasks through interaction</li>
-        <li>Does not need labeled data</li>
-        <li>Useful for decision-making problems</li>
-        <li>Improves performance through experience</li>
-    </ul>
+<h2>Main Components of Reinforcement Learning</h2>
+<ul>
+<li><b>Agent</b> – The learner or decision-maker.</li>
+<li><b>Environment</b> – The world where the agent operates.</li>
+<li><b>State</b> – The current situation of the environment.</li>
+<li><b>Action</b> – A decision made by the agent.</li>
+<li><b>Reward</b> – Feedback signal given after an action.</li>
+<li><b>Policy</b> – The strategy used by the agent to decide actions.</li>
+</ul>
 
-    <h2>Disadvantages of Reinforcement Learning</h2>
-    <ul>
-        <li>Requires a lot of training time and data</li>
-        <li>Computationally expensive</li>
-        <li>Hard to design reward systems</li>
-        <li>Can be unstable or unpredictable during training</li>
-    </ul>
+<div class="image-block">
+    <img src="https://www.labellerr.com/blog/content/images/2024/11/reinforcement-learning-human-feedback-LLMs.webp" alt="RL Cycle">
+    <p class="img-caption">Reinforcement Learning feedback loop</p>
+</div>
 
-    <h2>Conclusion</h2>
-    <p>
-        Reinforcement learning is a powerful machine learning approach focused on decision-making and learning from experience. 
-        It is widely used in robotics, games, and autonomous systems. However, it requires large computational resources and careful design of reward functions to perform effectively.
-    </p>
+<h2>Common Algorithms</h2>
+<ul>
+<li>Q-Learning</li>
+<li>Deep Q-Network (DQN)</li>
+<li>SARSA</li>
+<li>Policy Gradient Methods</li>
+<li>Actor-Critic Methods</li>
+</ul>
 
-    <footer>
-        <p>Created by Student | T-Know | Machine Learning Academic Page</p>
-    </footer>
+<div class="image-block">
+    <img src="https://mychessets.com/cdn/shop/articles/text-to-image_4eb264d3-9037-4ffc-a7aa-7582cd4f40d3.png?v=1714752472&width=2048" alt="Q Learning Example">
+    <p class="img-caption">Example of Q-Learning process</p>
+</div>
+
+<h2>Real-World Applications</h2>
+<div class="card">
+<p>🎮 Game playing AI (like chess and video games)</p>
+<p>🚗 Self-driving cars</p>
+<p>🤖 Robotics control systems</p>
+<p>📈 Stock trading strategies</p>
+<p>📡 Network optimization</p>
+</div>
+
+<div class="image-block">
+    <img src="https://www.robotlab.com/hubfs/Robotic%20Arms.jpg" alt="Applications">
+    <p class="img-caption">Applications of Reinforcement Learning in modern technology</p>
+</div>
+
+<h2>Advantages</h2>
+<ul>
+<li>Does not require labeled data</li>
+<li>Can learn complex decision-making strategies</li>
+<li>Adapts through interaction and feedback</li>
+</ul>
+
+<h2>Disadvantages</h2>
+<ul>
+<li>Training can take a long time</li>
+<li>Requires large computational resources</li>
+<li>Designing reward functions can be difficult</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>
+Reinforcement learning is powerful for solving decision-making problems where actions influence future outcomes. 
+Although it requires significant training time and resources, it plays a major role in modern AI systems 
+such as robotics, autonomous vehicles, and intelligent agents.
+</p>
+
+<footer>
+<p>Created by Student | T-Know | Machine Learning Academic Page</p>
+</footer>
+
+</div>
+
 </div>
 
 <script>
