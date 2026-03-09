@@ -142,13 +142,76 @@ footer {
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(20px);
   border-top: 1px solid rgba(255,255,255,0.15);
-  color:white;
+  color:red;
   font-size:13px;
   margin-top:40px;
 }
 
 @media(max-width:768px){
   .slider-wrapper { width:90%; height:300px; }
+}
+#toggle-btn {
+    top: 100px; /* lower position */
+    right: 20px;
+    position: fixed;
+    z-index: 1100;
+    background-color: rgba(0,0,0,0.1);
+    color: red; /* keep text visible */
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+#toggle-btn:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.side-nav {
+
+    top: 130px; 
+    right: -220px;
+    width: 200px;
+    height: calc(100vh - 60px); 
+    position: fixed;
+    background: rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 10px 0 0 10px;
+}
+.side-nav.active {
+    right: 0;
+    border: 2px solid white; /* red border */
+}
+.side-nav h2 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid red#ccc;
+    padding-bottom: 5px;
+}
+.side-nav a {
+    display: block;
+    color: red; /* red text */
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.side-nav a:hover {
+    background: rgba(255,0,0,0.1); /* subtle red hover */
+}
+.side-nav a:hover {
+    background: rgba(0,0,0,0.1);
 }
 </style>
 </head>
@@ -174,7 +237,15 @@ footer {
     <button onclick="location.href='contact.html'">Contact</button>
   </nav>
 </header>
-
+<!-- Topic Bar Button -->
+<button id="toggle-btn">☰ Topics</button>
+<div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="unsupv.html">Unsupervised Learning</a>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="renf.html">Reinforcement Learning</a>
+    <a href="advo.html">Advocacy</a>
+</div>
 <section class="hero">
   <div class="slider-wrapper">
     <button class="slide-btn prev" onclick="moveSlide(-1)">❮</button>
@@ -219,6 +290,15 @@ function moveSlide(direction) {
 
   slides.style.transform = `translateX(-${index * 100}%)`;
 }
+</script>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+
+});
 </script>
 </body>
 </html>
