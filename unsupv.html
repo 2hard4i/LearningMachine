@@ -521,19 +521,20 @@ toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
 });
 
-    const menuBtn = document.getElementById("menu-btn");
-const navbar = document.getElementById("navbar");
-
-menuBtn.onclick = () => {
- navbar.classList.toggle("active");
-};
-
+    // Animate nav links with staggered effect
 const navLinks = document.querySelectorAll('#navbar a');
+navLinks.forEach((link, index) => {
+  setTimeout(() => link.classList.add('animate'), index * 200);
+});
 
-navLinks.forEach((link,index)=>{
- setTimeout(()=>{
-  link.classList.add('animate');
- },index*200);
+// Hero image and title animation on load
+window.addEventListener('load', () => {
+  document.getElementById('hero-image').classList.add('show');
+  document.getElementById('title').classList.add('show');
+});
+// Animate hero text on page load
+window.addEventListener('load', () => {
+  document.querySelector('.hero-text').classList.add('show');
 });
 </script>
 <script>
@@ -541,7 +542,8 @@ navLinks.forEach((link,index)=>{
 window.addEventListener('load', () => {
   document.querySelector('.slider-wrapper').classList.add('show');
   document.querySelector('.hero-text').classList.add('show');
-    </script>
+});
+</script>
 
 </body>
 </html>
