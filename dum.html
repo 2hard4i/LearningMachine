@@ -313,7 +313,25 @@ toggleBtn.addEventListener('click',()=>{
 sideNav.classList.toggle('active');
 });
 
-</script>
+    const menuBtn = document.getElementById("menu-btn");
+const navbar = document.getElementById("navbar");
 
+menuBtn.onclick = () => {
+ navbar.classList.toggle("active");
+};
+
+const navLinks = document.querySelectorAll('#navbar a');
+    
+navLinks.forEach((link,index)=>{
+ setTimeout(()=>{
+  link.classList.add('animate');
+ },index*200);
+});
+
+// Animate image and text on page load
+window.addEventListener('load', () => {
+  document.querySelector('.slider-wrapper').classList.add('show');
+  document.querySelector('.hero-text').classList.add('show');
+    </script>
 </body>
 </html>
