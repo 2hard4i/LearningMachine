@@ -322,6 +322,27 @@ This error is used to adjust the model using optimization techniques such as gra
 <p>
 Supervised learning is one of the most important techniques in machine learning. It is widely used in real-world systems because it can make accurate predictions when trained with high-quality labeled data. However, it requires careful data preparation and evaluation to avoid errors and bias.
 </p>
+<h2>Interactive Demonstration</h2>
+
+<div class="card">
+
+<p>This shows a simple input → output model.</p>
+
+<h3>y = 2x² + 3x + 1</h3>
+
+<p>Enter a value for <b>x</b>.</p>
+
+<input type="number" id="xInput" placeholder="Enter X"
+style="padding:8px;border-radius:8px;border:none;margin-top:10px;">
+
+<button onclick="calculateY()"
+style="padding:8px 15px;margin-left:10px;border:none;border-radius:8px;background:#3b82f6;color:white;cursor:pointer;">
+Calculate
+</button>
+
+<p id="resultY" style="margin-top:15px;font-size:18px;"></p>
+
+</div>
 
 <footer>
 <p>Created by Student | T-Know | Machine Learning Academic Page</p>
@@ -330,6 +351,38 @@ Supervised learning is one of the most important techniques in machine learning.
 </div>
 
 <script>
+function calculateY(){
+
+let x = document.getElementById("xInput").value;
+
+if(x === ""){
+document.getElementById("resultY").innerHTML = "Please enter a number.";
+return;
+}
+
+x = parseFloat(x);
+
+let y = 2*x*x + 3*x + 1;
+
+document.getElementById("resultY").innerHTML = "Output Y = " + y;
+
+}
+
+/* allow Enter key to calculate */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+let input = document.getElementById("xInput");
+
+input.addEventListener("keypress", function(event){
+if(event.key === "Enter"){
+calculateY();
+}
+});
+
+});
+
+
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
 
