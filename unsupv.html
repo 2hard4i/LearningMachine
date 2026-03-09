@@ -495,19 +495,11 @@ const sideNav = document.getElementById('side-nav');
 toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
 });
-    const menuBtn = document.getElementById("menu-btn");
-const navbar = document.getElementById("navbar");
+    const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
 
-menuBtn.onclick = () => {
- navbar.classList.toggle("active");
-};
-
-const navLinks = document.querySelectorAll('#navbar a');
-
-navLinks.forEach((link,index)=>{
- setTimeout(()=>{
-  link.classList.add('animate');
- },index*200);
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
 });
 
     const menuBtn = document.getElementById("menu-btn");
