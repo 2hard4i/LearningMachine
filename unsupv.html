@@ -238,7 +238,7 @@ footer {
 </header>
 
 <!-- Side Topics -->
-<button id="toggle-btn">☰ Topics</button>
+
 <div class="side-nav" id="side-nav">
     <h2>Topics</h2>
     <a href="supv.html">Supervised Learning</a>
@@ -471,6 +471,20 @@ const sideNav = document.getElementById('side-nav');
 
 toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
+});
+    const menuBtn = document.getElementById("menu-btn");
+const navbar = document.getElementById("navbar");
+
+menuBtn.onclick = () => {
+ navbar.classList.toggle("active");
+};
+
+const navLinks = document.querySelectorAll('#navbar a');
+
+navLinks.forEach((link,index)=>{
+ setTimeout(()=>{
+  link.classList.add('animate');
+ },index*200);
 });
 </script>
 
