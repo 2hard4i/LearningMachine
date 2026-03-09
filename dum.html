@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-Know | Glass Slider</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI', sans-serif;
+}
+
+html, body {
+  height:100%;
+  overflow-x:hidden;
+}
+
+header {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  color:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-radius:0 0 20px 20px;
+}
+
+.logo {
+  display:flex;
+  align-items:center;
+}
+
+.logo img {
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  margin-right:10px;
+}
+
+nav button {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color:white;
+  padding:10px 18px;
+  margin-left:12px;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+}
+
+nav button:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+ 
+.hero {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
+}
+
+.slider-wrapper {
+  position:relative;
+  width:360px;
+  height:360px;
+  overflow:hidden;
+}
+
+.hero-slider {
+  width:100%;
+  height:100%;
+  border-radius:20px;
+  overflow:hidden;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.slides {
+  display:flex;
+  width:100%;
+  height:105%;
+  transition: transform 0.8s ease-in-out;
+  
+}
+
+.slide {
+  min-width:100%;
+  height:100%;
+}
+
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.slide-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background: rgba(9, 1, 1, 0.575);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.25);
+  color:rgb(0, 0, 0);
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:22px;
+  z-index:5;
+  transition:0.3s;
+}
+
+.slide-btn:hover {
+  background: rgba(53, 6, 224, 0.382);
+  transform:translateY(-50%) scale(1.1);
+}
+
+.prev { left:10px; }
+.next { right:10px; }
+
+footer {
+  text-align:center;
+  padding:15px;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  color:white;
+  font-size:13px;
+  margin-top:40px;
+}
+
+@media(max-width:768px){
+  .slider-wrapper { width:90%; height:300px; }
+}
+#toggle-btn {
+    top: 20px; 
+    right: 20px;
+    position: fixed;
+    z-index: 1100;
+    background-color: rgba(0,0,0,0.1);
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+#toggle-btn:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.side-nav {
+    top: 60px; 
+    right: -220px;
+    width: 200px;
+    height: calc(100vh - 60px); 
+    position: fixed;
+    background: rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 10px 0 0 10px;
+}
+.side-nav.active {
+    right: 0;
+}
+.side-nav h2 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.side-nav a {
+    display: block;
+    color: #2c3e50;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.side-nav a:hover {
+    background: rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ⭐ STAR BACKGROUND (FROM YOUR style.css) -->
+<section class="wrapper">
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+          
+    </section>
+</section>
+
+<header>
+  <div class="logo">
+    <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg">
+    <h1>T-Know</h1>
+  </div>
+  <nav>
+    <button onclick="location.href='about.html'">About</button>
+    <button onclick="location.href='contact.html'">Contact</button>
+  </nav>
+</header>
+<!-- Topic Bar Button -->
+<button id="toggle-btn">☰ Topics</button>
+<div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="index.html">Home</a>
+    <a href="unsupv.html">Unsupervised Learning</a>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="reinforcement.html">Reinforcement Learning</a>
+    <a href="advocacy.html">Advocacy</a>
+</div>
+<section class="hero">
+  <div class="slider-wrapper">
+    <button class="slide-btn prev" onclick="moveSlide(-1)">❮</button>
+    <div class="hero-slider">
+        <div class="slides" id="slides">
+  <div class="slide">
+  <a href="supv.html">
+    <img src="https://th.bing.com/th/id/OIP.VeYtPnWjQH7YL9qp7AcXxgHaHa" alt="Slide 1">
+  </a>
+</div>
+<div class="slide">
+  <a href="unsupv.html">
+    <img src="https://tse3.mm.bing.net/th/id/OIP.OiT5eb0Or11trRVqXwNxXgAAAA" alt="Slide 2">
+  </a>
+</div>
+
+<div class="slide">
+  <a href="renf.html">
+    <img src="https://tse4.mm.bing.net/th/id/OIP.DCgsIxbgoKOdw9Tlq2qEQwHaHa" alt="Slide 3">
+  </a>
+</div>
+</div>
+    <button class="slide-btn next" onclick="moveSlide(1)">❯</button>
+  </div>
+              <br>
+</section>
+  <div id="title">
+            <span>Learning Machine</span>
+  </div>
+
+
+<script>
+let index = 0;
+const slides = document.getElementById("slides");
+const total = slides.children.length;
+
+function moveSlide(direction) {
+  index += direction;
+
+  if (index < 0) index = total - 1;
+  if (index >= total) index = 0;
+
+  slides.style.transform = `translateX(-${index * 100}%)`;
+}
+</script>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
+</body>
+</html>
