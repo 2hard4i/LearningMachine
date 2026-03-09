@@ -5,8 +5,8 @@ html {
 }
 
 #title {
-    position: absolute;
-    top: 70%;
+    position: relative;
+    top: 20%;
     left: 0;
     right: 0;
     color: #fff;
