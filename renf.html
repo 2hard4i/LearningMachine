@@ -209,13 +209,13 @@ footer {
     .side-nav { width: 200px; }
 }
 .maze-cell{
-  width:50px;
-  height:50px;
+  width:60px;
+  height:60px;
   background:#1e293b;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:24px;
+  font-size:28px;
   border-radius:5px;
   cursor:pointer;
   color:white;
@@ -345,14 +345,14 @@ Although it requires significant training time and resources, it plays a major r
 such as robotics, autonomous vehicles, and intelligent agents.
 </p>
 
-<h2>Reinforcement Learning Maze Game</h2>
+<h2>Reinforcement Learning Maze Game (5×5)</h2>
 
 <div class="card">
 <p>
 Click adjacent cells to move 🤖 to the goal ⭐. Avoid hidden traps! Safe moves leave arrows, traps are revealed after stepping on them.
 </p>
 
-<div id="mazeGrid" style="display:grid; grid-template-columns:repeat(10,50px); gap:3px; margin-top:15px;"></div>
+<div id="mazeGrid" style="display:grid; grid-template-columns:repeat(5,60px); gap:3px; margin-top:15px;"></div>
 
 <p id="notif" style="margin-top:15px;font-size:18px;"></p>
 
@@ -368,20 +368,25 @@ Click adjacent cells to move 🤖 to the goal ⭐. Avoid hidden traps! Safe move
 </div>
 
 <script>
-const mazeSize = 10;
+const mazeSize = 5;
 let agent = {x:0, y:0};
-const goal = {x:9, y:9};
+const goal = {x:4, y:4};
 let traps = [];
 let visited = [];
 let revealedTraps = [];
 
-// Generate traps only once
+// Generate traps but leave at least one safe path to goal
 function generateTraps(count){
   traps = [];
+  // Safe path: top-left -> (0,1) -> (1,1) -> (1,2) -> (2,2) -> (3,3) -> (4,4)
+  const safePath = [
+    {x:0,y:0},{x:0,y:1},{x:1,y:1},{x:1,y:2},{x:2,y:2},{x:3,y:3},{x:4,y:4}
+  ];
   while(traps.length < count){
     let x = Math.floor(Math.random()*mazeSize);
     let y = Math.floor(Math.random()*mazeSize);
-    if((x===0 && y===0) || (x===goal.x && y===goal.y)) continue;
+    // Skip safe path
+    if(safePath.some(s=>s.x===x && s.y===y)) continue;
     if(!traps.some(t=>t.x===x && t.y===y)){
       traps.push({x,y});
     }
@@ -401,11 +406,8 @@ function drawMaze(){
       if(agent.x===x && agent.y===y) cell.innerHTML="🤖";
       else if(goal.x===x && goal.y===y) cell.innerHTML="⭐";
       else {
-        // Show arrow if visited
         let arrow = visited.find(v=>v.x===x && v.y===y)?.arrow || "";
         cell.innerHTML = arrow;
-
-        // Show revealed traps
         if(revealedTraps.some(t=>t.x===x && t.y===y)){
           cell.innerHTML="💀";
           cell.classList.add("trap-cell");
@@ -428,18 +430,16 @@ function moveAgent(x,y){
 
   // Check trap
   if(traps.some(t=>t.x===x && t.y===y)){
-    // Reveal this trap
     if(!revealedTraps.some(t=>t.x===x && t.y===y)){
       revealedTraps.push({x,y});
     }
-
     document.getElementById("notif").innerHTML = "💥 Trap! Returning to start. Step learned.";
     agent = {x:0, y:0}; // reset agent
     drawMaze();
     return;
   }
 
-  // Determine arrow symbol
+  // Determine arrow
   let arrow="";
   if(x>agent.x) arrow="➡";
   else if(x<agent.x) arrow="⬅";
@@ -449,11 +449,10 @@ function moveAgent(x,y){
   visited.push({x:agent.x, y:agent.y, arrow});
   agent.x=x; agent.y=y;
 
-  // Check goal
   if(agent.x===goal.x && agent.y===goal.y){
-    document.getElementById("notif").innerHTML="🎉 Goal reached! Steps taken: "+visited.length;
+    document.getElementById("notif").innerHTML="🎉 Goal reached! Steps: "+visited.length;
   } else {
-    document.getElementById("notif").innerHTML="✅ Step OK. Steps taken: "+visited.length;
+    document.getElementById("notif").innerHTML="✅ Step OK. Steps: "+visited.length;
   }
 
   drawMaze();
@@ -463,21 +462,14 @@ function resetMaze(){
   agent={x:0, y:0};
   visited=[];
   revealedTraps=[];
-  generateTraps(20);
+  generateTraps(8); // number of traps
   drawMaze();
   document.getElementById("notif").innerHTML="";
 }
 
 // Initialize
-generateTraps(20);
+generateTraps(8);
 drawMaze();
-
-const toggleBtn = document.getElementById('toggle-btn');
-const sideNav = document.getElementById('side-nav');
-
-toggleBtn.addEventListener('click', () => {
-    sideNav.classList.toggle('active');
-});
 </script>
 
 </body>
