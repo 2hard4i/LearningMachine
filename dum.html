@@ -3,334 +3,317 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>T-Know | Glass Slider</title>
-<link rel="stylesheet" href="style.css">
+<title>AI Advocacy | T-Know</title>
+<link rel="stylesheet" href="Whole.css">
+
 <style>
-  .logo{
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 8px 32px rgba(0,0,0,0.25);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+position:sticky;
+top:0;
+z-index:10;
+border-radius:0 0 20px 20px;
+}
+
+.logo{
 font-size:22px;
 font-weight:700;
 color:#fff;
-
 animation:neon 1.5s infinite alternate;
 }
 
 @keyframes neon{
-
 from{
-text-shadow:
-0 0 5px #fff,
-0 0 10px #0ea5e9,
-0 0 20px #0ea5e9,
-0 0 40px #0ea5e9;
+text-shadow:0 0 5px #fff,0 0 10px #0ea5e9,0 0 20px #0ea5e9;
 }
-
 to{
-text-shadow:
-0 0 10px #fff,
-0 0 20px #6366f1,
-0 0 40px #6366f1,
-0 0 80px #6366f1;
+text-shadow:0 0 10px #fff,0 0 20px #6366f1,0 0 40px #6366f1;
+}
 }
 
-}
-/* ----------------- RESET ----------------- */
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',sans-serif;
-}
-
-html, body {
-  height:100%;
-  overflow-x:hidden;
-  background:#0f172a;
-  color:white;
+nav a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:600;
+padding:8px 12px;
+border-radius:12px;
+transition:0.3s;
 }
 
-/* ----------------- HEADER ----------------- */
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.15);
-  box-shadow:0 8px 32px rgba(0,0,0,0.25);
-  position:sticky;
-  top:0;
-  z-index:1000;
+nav a:hover{
+background:rgba(255,255,255,0.2);
 }
 
-/* Logo */
-.logo {
-  font-size:22px;
-  font-weight:700;
+/* SIDE NAV */
+
+#toggle-btn{
+top:90px;
+right:20px;
+position:fixed;
+z-index:1100;
+background:rgba(255,255,255,0.1);
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:12px;
+cursor:pointer;
 }
 
-/* ----------------- NAVIGATION ----------------- */
-#navbar {
-  display:flex;
-  gap:18px;
+.side-nav{
+top:90px;
+right:-250px;
+width:230px;
+height:calc(100vh - 90px);
+position:fixed;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+padding:20px;
+transition:right 0.3s ease;
+border-radius:20px 0 0 20px;
 }
 
-#navbar a {
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  padding:8px 12px;
-  position:relative;
-  opacity:0;
-  transform:translateY(-20px);
-  display:inline-block;
-  transition:0.3s;
+.side-nav.active{
+right:0;
 }
 
-/* Tooltip for short links */
-.tooltiptext {
-  visibility:hidden;
-  opacity:0;
-  position:absolute;
-  top:35px;
-  left:50%;
-  transform:translateX(-50%);
-  background:rgba(0,0,0,0.8);
-  color:white;
-  padding:6px 10px;
-  border-radius:8px;
-  font-size:12px;
-  white-space:nowrap;
-  transition:0.3s;
+.side-nav a{
+display:block;
+color:white;
+text-decoration:none;
+margin:10px 0;
+font-weight:bold;
+padding:8px;
+border-radius:10px;
 }
 
-.tooltip:hover .tooltiptext {
-  visibility:visible;
-  opacity:1;
+.side-nav a:hover{
+background:rgba(255,255,255,0.2);
 }
 
-/* ----------------- NAV LINKS ANIMATION ----------------- */
-#navbar a.animate {
-  animation: linkPop 0.6s forwards;
+/* CONTENT */
+
+.container{
+max-width:900px;
+margin:40px auto;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+border-radius:20px;
+padding:40px;
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
-#navbar a:not(:last-child)::after {
-  content:"|";
-  color:white;
-  margin-left:8px;
-  opacity:0;
-  transform:scaleY(0);
-  display:inline-block;
-  animation:swordSeparator 0.6s forwards;
+h1,h2{
+margin-bottom:20px;
 }
 
-/* Keyframes */
-@keyframes linkPop {
-  0% { opacity:0; transform:translateY(-20px) scale(0.8); }
-  100% { opacity:1; transform:translateY(0) scale(1); }
+p,ul{
+line-height:1.8;
+margin-top:10px;
 }
 
-@keyframes swordSeparator {
-  0% { opacity:0; transform:scaleY(0); }
-  50% { opacity:1; transform:scaleY(1.2); }
-  100% { opacity:1; transform:scaleY(1); }
+ul{
+margin-left:20px;
 }
 
-/* Hover effect */
-#navbar a:hover {
-  background: rgba(255,255,255,0.15);
-  border-radius:8px;
+.card{
+background:rgba(255,255,255,0.1);
+border-left:4px solid #3b82f6;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
 }
 
-/* ----------------- HAMBURGER MENU ----------------- */
-.menu-btn {
-  display:none;
-  font-size:26px;
-  cursor:pointer;
-  color:white;
+.image-block{
+width:100%;
+overflow:hidden;
+border-radius:15px;
+margin:20px 0;
+text-align:center;
 }
 
-@media(max-width:768px){
-  #navbar {
-    position:absolute;
-    top:70px;
-    right:0;
-    background:rgba(0,0,0,0.7);
-    flex-direction:column;
-    width:200px;
-    padding:20px;
-    display:none;
-    border-radius:12px;
-  }
-
-  #navbar.active {
-    display:flex;
-  }
-
-  .menu-btn {
-    display:block;
-  }
-
-  #navbar a:not(:last-child)::after {
-    content:""; /* remove "|" on mobile */
-  }
+.image-block img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-/* ----------------- HERO ----------------- */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
+.img-caption{
+margin-top:8px;
+font-size:0.9rem;
+color:#cbd5f5;
+font-style:italic;
 }
 
-.slider-wrapper {
-  width: 360px;
-  height: 360px;
-  overflow: hidden;
-  border-radius: 50%;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 1.5s ease;
+footer{
+text-align:center;
+margin-top:40px;
+font-size:0.9rem;
+color:#94a3b8;
 }
 
-.hero-slider {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(25px);
-  border:1px solid rgba(255,255,255,0.2);
-  box-shadow:0 20px 50px rgba(0,0,0,0.4);
-}
-
-.slide img.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Hero text */
-.hero-text {
-
-    position: relative;
-    top: 20%;
-    left: 0;
-    right: 0;
-    color: #fff;
-    text-align: center;
-    font-family: Lato;
-    font-weight: 300;
-    font-size: 50px;
-    letter-spacing: 10px;
-    padding-left: 10px;
-      color: white;
-  font-size: 32px;
-  font-weight: 700;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 1s ease;
-}
-
-/* SHOW class for animation */
-.show {
-  opacity: 1 !important;
-  transform: scale(1) !important;
-}
 </style>
 </head>
+
 <body>
-    <section class="wrapper">
-<div id="stars"></div>
-<div id="stars2"></div>
-<div id="stars3"></div>
-</section>
 
-<!-- HEADER -->
 <header>
-  <div class="logo">T-Know</div>
 
-  <nav id="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="supv.html" class="tooltip">SLM<span class="tooltiptext">Supervised Learning</span></a>
-    <a href="unsupv.html" class="tooltip">ULM<span class="tooltiptext">Unsupervised Learning</span></a>
-    <a href="renf.html" class="tooltip">RLM<span class="tooltiptext">Reinforcement Learning</span></a>
-    <a href="advo.html">Advocacy</a>
-  </nav>
+<div class="logo">T-Know</div>
 
-  <div class="menu-btn" id="menu-btn">☰</div>
+<nav id="navbar">
+<a href="index.html">Home</a>
+<a href="supv.html">SLM</a>
+<a href="unsupv.html">ULM</a>
+<a href="renf.html">RLM</a>
+<a href="advo.html">Advocacy</a>
+</nav>
+
+<div class="menu-btn" id="menu-btn">☰</div>
+
 </header>
-<section class="hero">
-  <div class="slider-wrapper">
-    <div class="hero-slider">
-      <div class="slides" id="slides">
-        <div class="slide">
-          <a href="renf.html">
-            <img src="853f5686-f69b-454c-bd2e-2db3c3d9c3ce.png" alt="Slide" class="hero-image">
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
+<button id="toggle-btn">Topics</button>
 
-</section>
-  <h1 style="
-font-family: 'Segoe UI', sans-serif;
-font-size: 55px;
-letter-spacing: 10px;
-text-align: center;
-color: white;
-background: linear-gradient(90deg,#38bdf8,#818cf8,#22c55e);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 25px rgba(99,102,241,0.4);
-margin-top: 40px;
-">
-Learning Machine
-  </h1>
-</script>
+<div class="side-nav" id="side-nav">
 
-  <!-- CENTERED TEXT BELOW IMAGE -->
-</section>
+<h2>Topics</h2>
 
+<a href="supv.html">Supervised Learning</a>
+<a href="unsupv.html">Unsupervised Learning</a>
+<a href="renf.html">Reinforcement Learning</a>
 
-<!-- FOOTER -->
+</div>
 
+<div class="container">
 
-<!-- SCRIPTS -->
+<h1>AI Literacy Advocacy</h1>
+
+<p>
+Artificial Intelligence is becoming an important part of modern society.  
+From recommendation systems to medical analysis, AI technologies are increasingly influencing how people work, learn, and make decisions.
+</p>
+
+<div class="image-block">
+<img src="https://images.unsplash.com/photo-1677442136019-21780ecad995">
+<p class="img-caption">Artificial Intelligence shaping modern society</p>
+</div>
+
+<h2>Our Advocacy</h2>
+
+<div class="card">
+
+<p>
+The purpose of <b>T-Know</b> is to advocate for a deeper understanding of how Artificial Intelligence works.
+</p>
+
+<p>
+Many people use AI tools every day, but few understand their underlying processes, capabilities, and limitations.
+</p>
+
+<p>
+By promoting AI literacy, we aim to help communities make informed decisions about technology and its role in society.
+</p>
+
+</div>
+
+<h2>Why Understanding AI Matters</h2>
+
+<ul>
+
+<li>To understand what AI <b>can do</b> and what it <b>cannot do</b>.</li>
+
+<li>To prevent misinformation and unrealistic expectations about AI.</li>
+
+<li>To help individuals use AI responsibly and ethically.</li>
+
+<li>To empower communities with knowledge about emerging technologies.</li>
+
+</ul>
+
+<div class="image-block">
+<img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485">
+<p class="img-caption">Understanding technology empowers society</p>
+</div>
+
+<h2>Empowering Communities</h2>
+
+<div class="card">
+
+<p>
+When people understand the strengths and weaknesses of AI, they become empowered to use technology wisely.
+</p>
+
+<p>
+Knowledge about AI allows individuals to:
+</p>
+
+<ul>
+
+<li>Use AI tools for education and productivity.</li>
+<li>Recognize biases or errors in AI-generated results.</li>
+<li>Participate in discussions about technology policy and ethics.</li>
+
+</ul>
+
+</div>
+
+<h2>Our Vision</h2>
+
+<p>
+
+Our vision is a society where people are not just users of artificial intelligence but also informed thinkers who understand how these systems operate.
+
+</p>
+
+<p>
+
+Through education and awareness, AI can become a tool that supports learning, innovation, and the overall well-being of communities.
+
+</p>
+
+<footer>
+
+<p>Created by Student | T-Know | AI Literacy Advocacy</p>
+
+</footer>
+
+</div>
+
 <script>
-// Hamburger toggle
-const menuBtn = document.getElementById("menu-btn");
-const navbar = document.getElementById("navbar");
-menuBtn.onclick = () => navbar.classList.toggle("active");
 
-// Animate nav links with staggered effect
-const navLinks = document.querySelectorAll('#navbar a');
-navLinks.forEach((link, index) => {
-  setTimeout(() => link.classList.add('animate'), index * 200);
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click',()=>{
+sideNav.classList.toggle('active');
 });
 
-// Hero image and title animation on load
-window.addEventListener('load', () => {
-  document.getElementById('hero-image').classList.add('show');
-  document.getElementById('title').classList.add('show');
-});
-// Animate hero text on page load
-window.addEventListener('load', () => {
-  document.querySelector('.hero-text').classList.add('show');
-});
 </script>
-<script>
-// Animate image and text on page load
-window.addEventListener('load', () => {
-  document.querySelector('.slider-wrapper').classList.add('show');
-  document.querySelector('.hero-text').classList.add('show');
-});
-</script>
+
 </body>
 </html>
