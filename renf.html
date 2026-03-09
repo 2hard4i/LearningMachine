@@ -471,6 +471,13 @@ function resetMaze(){
 generateTraps(8);
 drawMaze();
 </script>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
 
+toggleBtn.addEventListener('click', () => {
+  sideNav.classList.toggle('active');
+});
+</script>
 </body>
 </html>
