@@ -8,298 +8,347 @@
 <link rel="stylesheet" href="style.css">
 
 <style>
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI', sans-serif;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
-html, body {
-  height:100%;
-  overflow-x:hidden;
+html,body{
+height:100%;
+overflow-x:hidden;
 }
 
-header {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-  color:white;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 30px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  border-radius:0 0 20px 20px;
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,0.15);
+box-shadow:0 8px 32px rgba(0,0,0,0.25);
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-.logo {
-  display:flex;
-  align-items:center;
+.logo{
+font-size:22px;
+font-weight:700;
 }
 
-.logo img {
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  margin-right:10px;
+/* NAVIGATION */
+
+#navbar{
+display:flex;
+gap:18px;
 }
 
-nav button {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  color:white;
-  padding:10px 18px;
-  margin-left:12px;
-  border-radius:12px;
-  cursor:pointer;
-  font-weight:600;
-  transition:0.3s;
+#navbar a{
+color:white;
+text-decoration:none;
+font-weight:600;
+padding:8px 12px;
+border-radius:8px;
+transition:0.3s;
 }
 
-nav button:hover {
-  background: rgba(255,255,255,0.2);
-  transform: scale(1.05);
-}
- 
-.hero {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:80px 20px;
+#navbar a:hover{
+background:rgba(255,255,255,0.15);
 }
 
-.slider-wrapper {
-  position:relative;
-  width:360px;
-  height:360px;
-  overflow:hidden;
+.menu-btn{
+display:none;
+font-size:26px;
+cursor:pointer;
+color:white;
 }
 
-.hero-slider {
-  width:100%;
-  height:100%;
-  border-radius:20px;
-  overflow:hidden;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+/* HERO */
+
+.hero{
+display:flex;
+justify-content:center;
+align-items:center;
+padding:80px 20px;
 }
 
-.slides {
-  display:flex;
-  width:100%;
-  height:105%;
-  transition: transform 0.8s ease-in-out;
-  
+.slider-wrapper{
+position:relative;
+width:360px;
+height:360px;
+overflow:hidden;
+border-radius:50%;
 }
 
-.slide {
-  min-width:100%;
-  height:100%;
+.hero-slider{
+width:100%;
+height:100%;
+border-radius:20px;
+overflow:hidden;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,0.2);
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
-.slide img {
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.slides{
+display:flex;
+width:100%;
+height:100%;
+transition:transform 0.8s ease-in-out;
 }
 
-.slide-btn {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background: rgba(9, 1, 1, 0.575);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(255,255,255,0.25);
-  color:rgb(0, 0, 0);
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  cursor:pointer;
-  font-size:22px;
-  z-index:5;
-  transition:0.3s;
+.slide{
+min-width:100%;
+height:100%;
 }
 
-.slide-btn:hover {
-  background: rgba(53, 6, 224, 0.382);
-  transform:translateY(-50%) scale(1.1);
+.slide img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-.prev { left:10px; }
-.next { right:10px; }
+/* FOOTER */
 
-footer {
-  text-align:center;
-  padding:15px;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(255,255,255,0.15);
-  color:red;
-  font-size:13px;
-  margin-top:40px;
+footer{
+text-align:center;
+padding:15px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-top:1px solid rgba(255,255,255,0.15);
+color:red;
+font-size:13px;
+margin-top:40px;
 }
+
+/* MOBILE NAV */
 
 @media(max-width:768px){
-  .slider-wrapper { width:90%; height:300px; }
-}
-#toggle-btn {
-    top: 100px; /* lower position */
-    right: 20px;
-    position: fixed;
-    z-index: 1100;
-    background-color: rgba(0,0,0,0.1);
-    color: red; /* keep text visible */
-    border: none;
-    padding: 10px 15px;
-    font-size: 1rem;
-    border-radius: 12px;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: 0.3s;
-}
-#toggle-btn:hover {
-    background-color: rgba(0,0,0,0.2);
+
+#navbar{
+position:absolute;
+top:70px;
+right:0;
+background:rgba(0,0,0,0.7);
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+border-radius:12px;
 }
 
-.side-nav {
+#navbar.active{
+display:flex;
+}
 
-    top: 130px; 
-    right: -220px;
-    width: 200px;
-    height: calc(100vh - 60px); 
-    position: fixed;
-    background: rgba(0,0,0,0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0,0,0,0.1);
-    padding: 20px;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    transition: right 0.3s ease;
-    z-index: 1000;
-    overflow-y: auto;
-    border-radius: 10px 0 0 10px;
+.menu-btn{
+display:block;
 }
-.side-nav.active {
-    right: 0;
-    border: 2px solid white; /* red border */
+
+.slider-wrapper{
+width:90%;
+height:300px;
 }
-.side-nav h2 {
-    color: #2c3e50;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    border-bottom: 1px solid red#ccc;
-    padding-bottom: 5px;
+
 }
-.side-nav a {
-    display: block;
-    color: red; /* red text */
-    text-decoration: none;
-    margin: 10px 0;
-    font-weight: bold;
-    padding: 8px;
-    border-radius: 10px;
-    transition: 0.3s;
+
+/* TOOLTIP */
+
+.tooltip{
+position:relative;
 }
-.side-nav a:hover {
-    background: rgba(255,0,0,0.1); /* subtle red hover */
+
+.tooltiptext{
+visibility:hidden;
+opacity:0;
+position:absolute;
+top:35px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.8);
+color:white;
+padding:6px 10px;
+border-radius:8px;
+font-size:12px;
+white-space:nowrap;
+transition:0.3s;
 }
-.side-nav a:hover {
-    background: rgba(0,0,0,0.1);
+
+.tooltip:hover .tooltiptext{
+visibility:visible;
+opacity:1;
+}
+
+/* ANIMATION */
+
+.animate{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.animate.show{
+opacity:1;
+transform:translateY(0);
+}
+
+#title{
+color:white;
+text-align:center;
+margin-top:40px;
+font-size:30px;
+}
+/* Logo pop-up from small to normal */
+.logo.animate {
+  opacity: 0;
+  transform: scale(0.5); /* start smaller */
+  transition: all 1.5s ease; /* slow and smooth */
+}
+
+.logo.animate.show {
+  opacity: 1;
+  transform: scale(1); /* full size */
 }
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ STAR BACKGROUND (FROM YOUR style.css) -->
+<!-- STAR BACKGROUND -->
 <section class="wrapper">
-  <div id="stars"></div>
-  <div id="stars2"></div>
-  <div id="stars3"></div>
-          
-    </section>
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
 </section>
 
-<header>
-  <div class="logo">
-    <img src="https://i.pinimg.com/736x/24/a3/b2/24a3b2a8be983c30d03cb51d683a1532.jpg">
-    <h1>T-Know</h1>
-  </div>
-  <nav>
-    <button onclick="location.href='about.html'">About</button>
-    <button onclick="location.href='contact.html'">Contact</button>
-  </nav>
+<!-- HEADER -->
+
+<header class="animate">
+
+<div class="logo">
+T-Know
+</div>
+
+<nav id="navbar">
+
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+
+<a href="supv.html" class="tooltip">
+SLM
+<span class="tooltiptext">Supervised Learning</span>
+</a>
+
+<a href="unsupv.html" class="tooltip">
+ULM
+<span class="tooltiptext">Unsupervised Learning</span>
+</a>
+
+<a href="renf.html" class="tooltip">
+RLM
+<span class="tooltiptext">Reinforcement Learning</span>
+</a>
+
+<a href="advo.html">Advocacy</a>
+
+</nav>
+
+<div class="menu-btn" id="menu-btn">
+☰
+</div>
+
 </header>
-<!-- Topic Bar Button -->
-<button id="toggle-btn">☰ Topics</button>
-<div class="side-nav" id="side-nav">
-    <h2>Topics</h2>
-    <a href="index.html">Home</a>
-    <a href="unsupv.html">Unsupervised Learning</a>
-    <a href="supv.html">Supervised Learning</a>
-    <a href="reinforcement.html">Reinforcement Learning</a>
-    <a href="advocacy.html">Advocacy</a>
-</div>
-<section class="hero">
-  <div class="slider-wrapper">
-    <button class="slide-btn prev" onclick="moveSlide(-1)">❮</button>
-    <div class="hero-slider">
-        <div class="slides" id="slides">
-  <div class="slide">
-  <a href="supv.html">
-    <img src="https://th.bing.com/th/id/OIP.VeYtPnWjQH7YL9qp7AcXxgHaHa" alt="Slide 1">
-  </a>
-</div>
-<div class="slide">
-  <a href="unsupv.html">
-    <img src="https://tse3.mm.bing.net/th/id/OIP.OiT5eb0Or11trRVqXwNxXgAAAA" alt="Slide 2">
-  </a>
+
+<!-- HERO -->
+
+<section class="hero animate">
+
+<div class="slider-wrapper">
+
+<div class="hero-slider">
+
+<div class="slides" id="slides">
+
+<div class="logo animate">
+<a href="renf.html">
+<img src="550d80c5-8b6d-4c5a-beca-2e2e21a3bb21.png" alt="Slide">
+</a>
 </div>
 
-<div class="slide">
-  <a href="renf.html">
-    <img src="https://tse4.mm.bing.net/th/id/OIP.DCgsIxbgoKOdw9Tlq2qEQwHaHa" alt="Slide 3">
-  </a>
 </div>
+
 </div>
-    <button class="slide-btn next" onclick="moveSlide(1)">❯</button>
-  </div>
-              <br>
+
+</div>
+
 </section>
-  <div id="title">
-            <span>Learning Machine</span>
-  </div>
 
+<div id="title" class="animate">
+<span>Learning Machine</span>
+</div>
+
+<!-- MOBILE MENU SCRIPT -->
 
 <script>
-let index = 0;
-const slides = document.getElementById("slides");
-const total = slides.children.length;
 
-function moveSlide(direction) {
-  index += direction;
+const menuBtn = document.getElementById("menu-btn");
+const navbar = document.getElementById("navbar");
 
-  if (index < 0) index = total - 1;
-  if (index >= total) index = 0;
+menuBtn.onclick = () =>{
+navbar.classList.toggle("active");
+};
 
-  slides.style.transform = `translateX(-${index * 100}%)`;
-}
 </script>
-<script>
-const toggleBtn = document.getElementById('toggle-btn');
-const sideNav = document.getElementById('side-nav');
 
-toggleBtn.addEventListener('click', () => {
-    sideNav.classList.toggle('active');
+<!-- SCROLL ANIMATION -->
+
+<script>
+
+const elements = document.querySelectorAll('.animate');
+
+function reveal(){
+
+elements.forEach(el =>{
+
+const windowHeight = window.innerHeight;
+const elementTop = el.getBoundingClientRect().top;
+
+if(elementTop < windowHeight - 100){
+el.classList.add('show');
+}
 
 });
+
+}
+
+window.addEventListener('scroll',reveal);
+window.addEventListener('load',reveal);
+
+</script>
+<script>
+  const elements = document.querySelectorAll('.animate');
+
+function reveal(){
+    elements.forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if(elementTop < windowHeight - 100){
+            el.classList.add('show');
+        }
+    });
+}
+
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
 </script>
 </body>
-</html>
+</html>;
