@@ -239,6 +239,32 @@ header {
   opacity: 1 !important;
   transform: scale(1) !important;
 }
+/* H1 Entrance Animation */
+@keyframes h1Entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) rotateX(20deg) scale(0.8);
+    filter: blur(5px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px) rotateX(-2deg) scale(1.05);
+    filter: blur(0);
+  }
+  80% {
+    transform: translateY(5px) rotateX(1deg) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0);
+  }
+}
+
+h1.animated-h1 {
+  opacity: 0;               /* start hidden */
+  animation: h1Entrance 1.5s ease-out forwards;
+}
 </style>
 </head>
 <body>
@@ -288,7 +314,7 @@ background: linear-gradient(90deg,#38bdf8,#818cf8,#22c55e);
 -webkit-text-fill-color: transparent;
 text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 25px rgba(99,102,241,0.4);
 margin-top: 40px;
-">
+" class="animated-h1">
 Learning Machine
   </h1>
 </script>
@@ -328,6 +354,13 @@ window.addEventListener('load', () => {
 window.addEventListener('load', () => {
   document.querySelector('.slider-wrapper').classList.add('show');
   document.querySelector('.hero-text').classList.add('show');
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const elements = document.querySelectorAll('.animated-text');
+  elements.forEach((el, index) => {
+    el.style.animationDelay = `${index * 0.3}s`; // stagger by 0.3s
+  });
 });
 </script>
 </body>
