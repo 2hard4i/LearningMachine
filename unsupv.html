@@ -326,6 +326,62 @@ Algorithms group similar data points together or reduce data dimensionality to s
 Unsupervised learning is essential for discovering insights in unlabeled data. It is widely used in clustering, anomaly detection, and data reduction. While it provides flexibility and pattern discovery, careful algorithm selection and parameter tuning are crucial for meaningful results.
 </p>
 
+<h2>Interactive Pattern Discovery</h2>
+
+<div class="card">
+
+<p>
+Pick emojis randomly and place them in the basket.  
+The system will analyze the pattern and organize the data.
+</p>
+
+<div style="font-size:28px;margin-top:10px;line-height:40px;">
+
+<!-- Food -->
+<span onclick="addEmoji('🍎','Food')">🍎</span>
+<span onclick="addEmoji('🍌','Food')">🍌</span>
+<span onclick="addEmoji('🍓','Food')">🍓</span>
+<span onclick="addEmoji('🍇','Food')">🍇</span>
+<span onclick="addEmoji('🍕','Food')">🍕</span>
+<span onclick="addEmoji('🍔','Food')">🍔</span>
+
+<!-- Animals -->
+<span onclick="addEmoji('🐶','Animal')">🐶</span>
+<span onclick="addEmoji('🐱','Animal')">🐱</span>
+<span onclick="addEmoji('🐰','Animal')">🐰</span>
+<span onclick="addEmoji('🐼','Animal')">🐼</span>
+<span onclick="addEmoji('🦊','Animal')">🦊</span>
+<span onclick="addEmoji('🐸','Animal')">🐸</span>
+
+<!-- Sports -->
+<span onclick="addEmoji('⚽','Sports')">⚽</span>
+<span onclick="addEmoji('🏀','Sports')">🏀</span>
+<span onclick="addEmoji('🏈','Sports')">🏈</span>
+<span onclick="addEmoji('🎾','Sports')">🎾</span>
+<span onclick="addEmoji('🏐','Sports')">🏐</span>
+<span onclick="addEmoji('🥊','Sports')">🥊</span>
+
+</div>
+
+<h3 style="margin-top:15px;">Basket</h3>
+<div id="basket" style="font-size:30px;margin-top:10px;"></div>
+
+<br>
+
+<button onclick="analyzePattern()" style="padding:8px 15px;border:none;border-radius:8px;background:#3b82f6;color:white;cursor:pointer;">
+Analyze Pattern
+</button>
+
+<button onclick="resetBasket()" style="padding:8px 15px;border:none;border-radius:8px;background:#ef4444;color:white;cursor:pointer;margin-left:10px;">
+Reset
+</button>
+
+<p id="patternResult" style="margin-top:15px;font-size:18px;"></p>
+
+<div id="resultTable" style="margin-top:20px;"></div>
+
+</div>
+
 <footer>
 <p>Created by Student | T-Know | Machine Learning Academic Page</p>
 </footer>
@@ -333,6 +389,76 @@ Unsupervised learning is essential for discovering insights in unlabeled data. I
 </div>
 
 <script>
+let basket = []
+let categories = []
+
+function addEmoji(emoji, category){
+
+basket.push(emoji)
+categories.push(category)
+
+document.getElementById("basket").innerHTML = basket.join(" ")
+
+}
+
+function analyzePattern(){
+
+if(basket.length === 0){
+document.getElementById("patternResult").innerHTML = "Pick emojis first."
+return
+}
+
+let count = {}
+
+categories.forEach(function(cat){
+count[cat] = (count[cat] || 0) + 1
+})
+
+let dominant = Object.keys(count).reduce((a,b)=>count[a]>count[b]?a:b)
+
+document.getElementById("patternResult").innerHTML =
+"Pattern Detected: Most items belong to <b>" + dominant + "</b> group."
+
+generateTable(count)
+
+}
+
+function generateTable(count){
+
+let table = "<table style='width:100%;margin-top:10px;border-collapse:collapse;'>"
+
+table += "<tr style='background:#1e293b'>"
+table += "<th style='padding:8px;border:1px solid #334155'>Category</th>"
+table += "<th style='padding:8px;border:1px solid #334155'>Items Selected</th>"
+table += "</tr>"
+
+for(let cat in count){
+
+table += "<tr>"
+table += "<td style='padding:8px;border:1px solid #334155'>" + cat + "</td>"
+table += "<td style='padding:8px;border:1px solid #334155'>" + count[cat] + "</td>"
+table += "</tr>"
+
+}
+
+table += "</table>"
+
+document.getElementById("resultTable").innerHTML = table
+
+}
+
+function resetBasket(){
+
+basket = []
+categories = []
+
+document.getElementById("basket").innerHTML = ""
+document.getElementById("patternResult").innerHTML = ""
+document.getElementById("resultTable").innerHTML = ""
+
+}
+
+
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
 
@@ -340,6 +466,9 @@ toggleBtn.addEventListener('click', () => {
     sideNav.classList.toggle('active');
 });
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
