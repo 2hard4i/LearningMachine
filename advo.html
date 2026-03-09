@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T-Know Advocacy | Machine Learning Literacy</title>
+<style>
+/* Base Styles */
+body {
+    font-family: 'Georgia', serif;
+    background-color: #fdf6e3; /* Book page cream */
+    color: #333;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff8f0;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.6rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Book-like paragraphs */
+p {
+    margin: 20px 0;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+/* Images in book style */
+.book-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Floating images */
+.float-left {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+.float-right {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 40%;
+}
+
+/* Clear floats after paragraphs */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    .float-left, .float-right {
+        float: none;
+        width: 100%;
+        margin: 20px 0;
+    }
+    .container { padding: 20px; margin: 20px; }
+}
+#toggle-btn {
+    top: 20px; 
+    right: 20px;
+    position: fixed;
+    z-index: 1100;
+    background-color: rgba(0,0,0,0.1);
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+#toggle-btn:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.side-nav {
+    top: 60px; 
+    right: -220px;
+    width: 200px;
+    height: calc(100vh - 60px); 
+    position: fixed;
+    background: rgba(0,0,0,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 20px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+    border-radius: 10px 0 0 10px;
+}
+.side-nav.active {
+    right: 0;
+}
+.side-nav h2 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.side-nav a {
+    display: block;
+    color: #2c3e50;
+    text-decoration: none;
+    margin: 10px 0;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.side-nav a:hover {
+    background: rgba(0,0,0,0.1);
+}
+</style>
+</head>
+<body>
+
+<button id="toggle-btn">☰ Topics</button>
+<div class="container">
+
+<div class="side-nav" id="side-nav">
+    <h2>Topics</h2>
+    <a href="index.html">Home</a>
+    <a href="unsupv.html">Unsupervised Learning</a>
+    <a href="supv.html">Supervised Learning</a>
+    <a href="reinforcement.html">Reinforcement Learning</a>
+    <a href="advocacy.html">Advocacy</a>
+</div>
+
+<h1>Accessible and Responsible Machine Learning Literacy</h1>
+
+<img src="https://www.ft.com/partnercontent/isp/img/2/hero.jpg" alt="Book cover image" class="book-image">
+
+<h2>1️⃣ Promote AI Literacy for All</h2>
+<div class="clearfix">
+<img src="https://theacademic.com/wp-content/uploads/2023/09/neliti_AI_in_teaching_and_learning_4K_ultrarestics_28f38230-ca84-411c-ad90-af1e1000e1b4.png" alt="Students learning AI" class="float-left">
+<p>
+At <b>T-Know</b>, we believe that everyone deserves to understand the power and potential of artificial intelligence. 
+Our advocacy is to make machine learning accessible to students, educators, and enthusiasts through clear explanations, interactive tools, and visual demonstrations. 
+By learning the fundamentals today, users are better prepared for the technology-driven world of tomorrow.
+</p>
+</div>
+
+<h2>2️⃣ Hands-On, Experiential Learning</h2>
+<div class="clearfix">
+<img src="https://s7494.pcdn.co/lts/files/2022/02/interactive-learning.png" alt="Interactive learning illustration" class="float-right">
+<p>
+We believe theory alone is not enough. Learners thrive when they experiment, make mistakes, and explore in a safe environment. 
+Through interactive games, maze simulations, and reinforcement learning demonstrations, users gain practical experience, 
+mirroring how AI systems themselves learn from trial, error, and feedback.
+</p>
+</div>
+
+<h2>3️⃣ Responsible and Ethical AI Awareness</h2>
+<div class="clearfix">
+<img src="https://img.freepik.com/premium-vector/hand-drawn-ai-ethics-illustration_23-2151170126.jpg" alt="Ethical AI illustration" class="float-left">
+<p>
+Learning machine learning is not just about algorithms—it’s about impact. 
+We advocate for teaching the ethical implications of AI, promoting transparency in AI models, and encouraging responsible use of technology. 
+Understanding the societal and personal consequences of AI decisions is essential for all learners.
+</p>
+</div>
+
+<h2>Our Mission</h2>
+<p>
+To empower learners to understand, experiment, and innovate with AI responsibly. 
+We aim to bridge the gap between curiosity and expertise by providing interactive tools, visual demonstrations, and structured guidance.
+Through our platform, AI and machine learning become approachable, engaging, and practical—just like reading a rich, illustrated book of knowledge.
+</p>
+
+<footer>
+<p>Created by Student | T-Know | Machine Learning Academic Platform</p>
+</footer>
+
+</div>
+<script>
+const toggleBtn = document.getElementById('toggle-btn');
+const sideNav = document.getElementById('side-nav');
+
+toggleBtn.addEventListener('click', () => {
+    sideNav.classList.toggle('active');
+});
+</script>
+</body>
+</html>
