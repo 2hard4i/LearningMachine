@@ -4,351 +4,358 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>T-Know | Glass Slider</title>
-
 <link rel="stylesheet" href="style.css">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+/* ----------------- RESET ----------------- */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
 }
 
-html,body{
-height:100%;
-overflow-x:hidden;
+html, body {
+  height:100%;
+  overflow-x:hidden;
+  background:#0f172a;
+  color:white;
 }
 
-/* HEADER */
-
-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,0.15);
-box-shadow:0 8px 32px rgba(0,0,0,0.25);
-color:white;
-position:sticky;
-top:0;
-z-index:1000;
+/* ----------------- HEADER ----------------- */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 8px 32px rgba(0,0,0,0.25);
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-.logo{
-font-size:22px;
-font-weight:700;
+/* Logo */
+.logo {
+  font-size:22px;
+  font-weight:700;
 }
 
-/* NAVIGATION */
-
-#navbar{
-display:flex;
-gap:18px;
+/* ----------------- NAVIGATION ----------------- */
+#navbar {
+  display:flex;
+  gap:18px;
 }
 
-#navbar a{
-color:white;
-text-decoration:none;
-font-weight:600;
-padding:8px 12px;
-border-radius:8px;
-transition:0.3s;
+#navbar a {
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 12px;
+  position:relative;
+  opacity:0;
+  transform:translateY(-20px);
+  display:inline-block;
+  transition:0.3s;
 }
 
-#navbar a:hover{
-background:rgba(255,255,255,0.15);
+/* Tooltip for short links */
+.tooltiptext {
+  visibility:hidden;
+  opacity:0;
+  position:absolute;
+  top:35px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.8);
+  color:white;
+  padding:6px 10px;
+  border-radius:8px;
+  font-size:12px;
+  white-space:nowrap;
+  transition:0.3s;
 }
 
-.menu-btn{
-display:none;
-font-size:26px;
-cursor:pointer;
-color:white;
+.tooltip:hover .tooltiptext {
+  visibility:visible;
+  opacity:1;
 }
 
-/* HERO */
-
-.hero{
-display:flex;
-justify-content:center;
-align-items:center;
-padding:80px 20px;
+/* ----------------- NAV LINKS ANIMATION ----------------- */
+#navbar a.animate {
+  animation: linkPop 0.6s forwards;
 }
 
-.slider-wrapper{
-position:relative;
-width:360px;
-height:360px;
-overflow:hidden;
-border-radius:50%;
+#navbar a:not(:last-child)::after {
+  content:"|";
+  color:white;
+  margin-left:8px;
+  opacity:0;
+  transform:scaleY(0);
+  display:inline-block;
+  animation:swordSeparator 0.6s forwards;
 }
 
-.hero-slider{
-width:100%;
-height:100%;
-border-radius:20px;
-overflow:hidden;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(25px);
-border:1px solid rgba(255,255,255,0.2);
-box-shadow:0 20px 50px rgba(0,0,0,0.4);
+/* Keyframes */
+@keyframes linkPop {
+  0% { opacity:0; transform:translateY(-20px) scale(0.8); }
+  100% { opacity:1; transform:translateY(0) scale(1); }
 }
 
-.slides{
-display:flex;
-width:100%;
-height:100%;
-transition:transform 0.8s ease-in-out;
+@keyframes swordSeparator {
+  0% { opacity:0; transform:scaleY(0); }
+  50% { opacity:1; transform:scaleY(1.2); }
+  100% { opacity:1; transform:scaleY(1); }
 }
 
-.slide{
-min-width:100%;
-height:100%;
+/* Hover effect */
+#navbar a:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius:8px;
 }
 
-.slide img{
-width:100%;
-height:100%;
-object-fit:cover;
+/* ----------------- HAMBURGER MENU ----------------- */
+.menu-btn {
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+  color:white;
 }
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:15px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-border-top:1px solid rgba(255,255,255,0.15);
-color:red;
-font-size:13px;
-margin-top:40px;
-}
-
-/* MOBILE NAV */
 
 @media(max-width:768px){
+  #navbar {
+    position:absolute;
+    top:70px;
+    right:0;
+    background:rgba(0,0,0,0.7);
+    flex-direction:column;
+    width:200px;
+    padding:20px;
+    display:none;
+    border-radius:12px;
+  }
 
-#navbar{
-position:absolute;
-top:70px;
-right:0;
-background:rgba(0,0,0,0.7);
-flex-direction:column;
-width:200px;
-padding:20px;
-display:none;
-border-radius:12px;
+  #navbar.active {
+    display:flex;
+  }
+
+  .menu-btn {
+    display:block;
+  }
+
+  #navbar a:not(:last-child)::after {
+    content:""; /* remove "|" on mobile */
+  }
 }
 
-#navbar.active{
-display:flex;
+/* ----------------- HERO ----------------- */
+.hero {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:80px 20px;
 }
 
-.menu-btn{
-display:block;
+.slider-wrapper {
+  position:relative;
+  width:360px;
+  height:360px;
+  overflow:hidden;
+  border-radius:50%;
+  opacity:0;
+  transform:scale(0.5);
+  transition:all 1.5s ease;
 }
 
-.slider-wrapper{
-width:90%;
-height:300px;
+.slider-wrapper.show {
+  opacity:1;
+  transform:scale(1);
 }
 
+.hero-slider {
+  width:100%;
+  height:100%;
+  border-radius:20px;
+  overflow:hidden;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(25px);
+  border:1px solid rgba(255,255,255,0.2);
+  box-shadow:0 20px 50px rgba(0,0,0,0.4);
 }
 
-/* TOOLTIP */
-
-.tooltip{
-position:relative;
+.slides {
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform 0.8s ease-in-out;
 }
 
-.tooltiptext{
-visibility:hidden;
-opacity:0;
-position:absolute;
-top:35px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.8);
-color:white;
-padding:6px 10px;
-border-radius:8px;
-font-size:12px;
-white-space:nowrap;
-transition:0.3s;
+.slide img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.tooltip:hover .tooltiptext{
-visibility:visible;
-opacity:1;
+/* ----------------- TITLE ----------------- */
+#title {
+  color:white;
+  text-align:center;
+  margin-top:40px;
+  font-size:30px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 1s ease;
 }
 
-/* ANIMATION */
-
-.animate{
-opacity:0;
-transform:translateY(40px);
-transition:all 0.8s ease;
+#title.show {
+  opacity:1;
+  transform:translateY(0);
 }
 
-.animate.show{
-opacity:1;
-transform:translateY(0);
+/* ----------------- FOOTER ----------------- */
+footer {
+  text-align:center;
+  padding:15px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  border-top:1px solid rgba(255,255,255,0.15);
+  color:red;
+  font-size:13px;
+  margin-top:40px;
 }
-
-#title{
-color:white;
-text-align:center;
-margin-top:40px;
-font-size:30px;
-}
-/* Logo pop-up from small to normal */
-.logo.animate {
+//* Hero text below image, centered */
+.hero-text {
+  text-align: center;
+  margin-top: 20px; /* space below image */
+  color: white;
+  background: rgba(255, 255, 255, 0.08); /* subtle glass effect */
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: 12px;
+  display: inline-block;
   opacity: 0;
-  transform: scale(0.5); /* start smaller */
-  transition: all 1.5s ease; /* slow and smooth */
+  transform: translateY(20px);
+  transition: all 1s ease;
 }
 
-.logo.animate.show {
+/* Animate text pop-up */
+.hero-text.show {
   opacity: 1;
-  transform: scale(1); /* full size */
+  transform: translateY(0);
+}
+
+/* Headings and paragraphs style */
+.hero-text h2 {
+  margin-bottom: 8px;
+  font-size: 26px;
+}
+
+.hero-text p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+.hero-text {
+   color: #fff;
+    text-align: center;
+    font-family: Lato;
+    font-weight: 300;
+    font-size: 50px;
+    letter-spacing: 10px;
+    padding-left: 10px;
+    background: -webkit-linear-gradient(white, #38495a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+#hero-text span {
+    background: -webkit-linear-gradient(white, #38495a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-text.show {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>
 </head>
-
 <body>
-
-<!-- STAR BACKGROUND -->
-<section class="wrapper">
+    <section class="wrapper">
 <div id="stars"></div>
 <div id="stars2"></div>
 <div id="stars3"></div>
 </section>
 
 <!-- HEADER -->
+<header>
+  <div class="logo">T-Know</div>
 
-<header class="animate">
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="supv.html" class="tooltip">SLM<span class="tooltiptext">Supervised Learning</span></a>
+    <a href="unsupv.html" class="tooltip">ULM<span class="tooltiptext">Unsupervised Learning</span></a>
+    <a href="renf.html" class="tooltip">RLM<span class="tooltiptext">Reinforcement Learning</span></a>
+    <a href="advo.html">Advocacy</a>
+  </nav>
 
-<div class="logo">
-T-Know
-</div>
-
-<nav id="navbar">
-
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-
-<a href="supv.html" class="tooltip">
-SLM
-<span class="tooltiptext">Supervised Learning</span>
-</a>
-
-<a href="unsupv.html" class="tooltip">
-ULM
-<span class="tooltiptext">Unsupervised Learning</span>
-</a>
-
-<a href="renf.html" class="tooltip">
-RLM
-<span class="tooltiptext">Reinforcement Learning</span>
-</a>
-
-<a href="advo.html">Advocacy</a>
-
-</nav>
-
-<div class="menu-btn" id="menu-btn">
-☰
-</div>
-
+  <div class="menu-btn" id="menu-btn">☰</div>
 </header>
-
-<!-- HERO -->
-
-<section class="hero animate">
-
-<div class="slider-wrapper">
-
-<div class="hero-slider">
-
-<div class="slides" id="slides">
-
-<div class="logo animate">
-<a href="renf.html">
-<img src="550d80c5-8b6d-4c5a-beca-2e2e21a3bb21.png" alt="Slide">
-</a>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<section class="hero">
+  <div class="slider-wrapper show">
+    <div class="hero-slider">
+      <div class="slides" id="slides">
+        <div class="slide">
+          <a href="advo.html">
+            <img src="853f5686-f69b-454c-bd2e-2db3c3d9c3ce.png" alt="Slide">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="hero-text">
+  
+  </div>
 </section>
 
-<div id="title" class="animate">
-<span>Learning Machine</span>
-</div>
+</script>
 
-<!-- MOBILE MENU SCRIPT -->
+  <!-- CENTERED TEXT BELOW IMAGE -->
+  <div class="hero-text animate">
+    Learning Machine
+  </div>
+</section>
 
+<div id="title">Learning Machine</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2026 T-Know. All rights reserved.
+</footer>
+
+<!-- SCRIPTS -->
 <script>
-
+// Hamburger toggle
 const menuBtn = document.getElementById("menu-btn");
 const navbar = document.getElementById("navbar");
+menuBtn.onclick = () => navbar.classList.toggle("active");
 
-menuBtn.onclick = () =>{
-navbar.classList.toggle("active");
-};
-
-</script>
-
-<!-- SCROLL ANIMATION -->
-
-<script>
-
-const elements = document.querySelectorAll('.animate');
-
-function reveal(){
-
-elements.forEach(el =>{
-
-const windowHeight = window.innerHeight;
-const elementTop = el.getBoundingClientRect().top;
-
-if(elementTop < windowHeight - 100){
-el.classList.add('show');
-}
-
+// Animate nav links with staggered effect
+const navLinks = document.querySelectorAll('#navbar a');
+navLinks.forEach((link, index) => {
+  setTimeout(() => link.classList.add('animate'), index * 200);
 });
 
-}
-
-window.addEventListener('scroll',reveal);
-window.addEventListener('load',reveal);
-
-</script>
-<script>
-  const elements = document.querySelectorAll('.animate');
-
-function reveal(){
-    elements.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        if(elementTop < windowHeight - 100){
-            el.classList.add('show');
-        }
-    });
-}
-
-window.addEventListener('scroll', reveal);
-window.addEventListener('load', reveal);
+// Hero image and title animation on load
+window.addEventListener('load', () => {
+  document.getElementById('hero-image').classList.add('show');
+  document.getElementById('title').classList.add('show');
+});
+// Animate hero text on page load
+window.addEventListener('load', () => {
+  document.querySelector('.hero-text').classList.add('show');
+});
 </script>
 </body>
-</html>;
+</html>
