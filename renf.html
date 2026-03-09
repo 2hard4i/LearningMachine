@@ -208,6 +208,26 @@ footer {
     #toggle-btn { top: 80px; right: 15px; }
     .side-nav { width: 200px; }
 }
+.maze-cell{
+  width:50px;
+  height:50px;
+  background:#1e293b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  border-radius:5px;
+  cursor:pointer;
+  color:white;
+  user-select:none;
+}
+.maze-cell:hover{
+  background:#374151;
+}
+.trap-cell{
+  background:#7f1d1d !important;
+  color:#f87171;
+}
 </style>
 </head>
 <body>
@@ -325,6 +345,20 @@ Although it requires significant training time and resources, it plays a major r
 such as robotics, autonomous vehicles, and intelligent agents.
 </p>
 
+<h2>Reinforcement Learning Maze Game</h2>
+
+<div class="card">
+<p>
+Click adjacent cells to move 🤖 to the goal ⭐. Avoid hidden traps! Safe moves leave arrows, traps are revealed after stepping on them.
+</p>
+
+<div id="mazeGrid" style="display:grid; grid-template-columns:repeat(10,50px); gap:3px; margin-top:15px;"></div>
+
+<p id="notif" style="margin-top:15px;font-size:18px;"></p>
+
+<button onclick="resetMaze()" style="margin-top:10px;">Restart Maze</button>
+</div>
+
 <footer>
 <p>Created by Student | T-Know | Machine Learning Academic Page</p>
 </footer>
@@ -334,6 +368,110 @@ such as robotics, autonomous vehicles, and intelligent agents.
 </div>
 
 <script>
+const mazeSize = 10;
+let agent = {x:0, y:0};
+const goal = {x:9, y:9};
+let traps = [];
+let visited = [];
+let revealedTraps = [];
+
+// Generate traps only once
+function generateTraps(count){
+  traps = [];
+  while(traps.length < count){
+    let x = Math.floor(Math.random()*mazeSize);
+    let y = Math.floor(Math.random()*mazeSize);
+    if((x===0 && y===0) || (x===goal.x && y===goal.y)) continue;
+    if(!traps.some(t=>t.x===x && t.y===y)){
+      traps.push({x,y});
+    }
+  }
+}
+
+function drawMaze(){
+  const grid = document.getElementById("mazeGrid");
+  grid.innerHTML = "";
+  for(let y=0;y<mazeSize;y++){
+    for(let x=0;x<mazeSize;x++){
+      let cell = document.createElement("div");
+      cell.className="maze-cell";
+      cell.dataset.x = x;
+      cell.dataset.y = y;
+
+      if(agent.x===x && agent.y===y) cell.innerHTML="🤖";
+      else if(goal.x===x && goal.y===y) cell.innerHTML="⭐";
+      else {
+        // Show arrow if visited
+        let arrow = visited.find(v=>v.x===x && v.y===y)?.arrow || "";
+        cell.innerHTML = arrow;
+
+        // Show revealed traps
+        if(revealedTraps.some(t=>t.x===x && t.y===y)){
+          cell.innerHTML="💀";
+          cell.classList.add("trap-cell");
+        }
+      }
+
+      cell.addEventListener("click", ()=>moveAgent(x,y));
+      grid.appendChild(cell);
+    }
+  }
+}
+
+function moveAgent(x,y){
+  const dx = Math.abs(x-agent.x);
+  const dy = Math.abs(y-agent.y);
+  if(dx+dy !== 1){
+    document.getElementById("notif").innerHTML = "❌ Only move to adjacent cells!";
+    return;
+  }
+
+  // Check trap
+  if(traps.some(t=>t.x===x && t.y===y)){
+    // Reveal this trap
+    if(!revealedTraps.some(t=>t.x===x && t.y===y)){
+      revealedTraps.push({x,y});
+    }
+
+    document.getElementById("notif").innerHTML = "💥 Trap! Returning to start. Step learned.";
+    agent = {x:0, y:0}; // reset agent
+    drawMaze();
+    return;
+  }
+
+  // Determine arrow symbol
+  let arrow="";
+  if(x>agent.x) arrow="➡";
+  else if(x<agent.x) arrow="⬅";
+  else if(y>agent.y) arrow="⬇";
+  else if(y<agent.y) arrow="⬆";
+
+  visited.push({x:agent.x, y:agent.y, arrow});
+  agent.x=x; agent.y=y;
+
+  // Check goal
+  if(agent.x===goal.x && agent.y===goal.y){
+    document.getElementById("notif").innerHTML="🎉 Goal reached! Steps taken: "+visited.length;
+  } else {
+    document.getElementById("notif").innerHTML="✅ Step OK. Steps taken: "+visited.length;
+  }
+
+  drawMaze();
+}
+
+function resetMaze(){
+  agent={x:0, y:0};
+  visited=[];
+  revealedTraps=[];
+  generateTraps(20);
+  drawMaze();
+  document.getElementById("notif").innerHTML="";
+}
+
+// Initialize
+generateTraps(20);
+drawMaze();
+
 const toggleBtn = document.getElementById('toggle-btn');
 const sideNav = document.getElementById('side-nav');
 
